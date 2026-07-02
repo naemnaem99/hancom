@@ -1,0 +1,17 @@
+@keyframes float {
+    0%, 100% {transform: translateY(0);}
+    50% {transform: translateY(-30px);}
+}
+
+.ball {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: aquamarine;
+    
+}
+
+.ball:hover {
+    
+    animation: float 1.5s ease-in-out infinite;
+}

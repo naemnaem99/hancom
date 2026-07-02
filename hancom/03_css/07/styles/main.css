@@ -1,0 +1,28 @@
+a:link{color:royalblue}
+a:visited{color:purple}
+a:hover{color:tomato}
+a:active{color:red}
+
+.info::after {
+  content: "도움말";
+}
+
+.info::after {
+  display: none;
+}
+
+.info:hover::after {
+  display: block;  /* 마우스 올리면 표시 */
+}
+.info {
+  position: relative;  /* 기준점 설정 */
+}
+
+.info:hover::after {
+  display: block;
+  position: absolute;
+  background: black;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+}

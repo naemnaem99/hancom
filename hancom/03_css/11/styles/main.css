@@ -1,0 +1,22 @@
+.neon{
+    font-style: italic;
+    width: 220px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: bisque;
+    border-radius: 12px;
+    background: linear-gradient(125deg, green,yellow);
+            box-shadow: 0 0 25px #52a75d
+}
+
+p {
+    font-size: px;
+    font-weight: bold;
+    background: linear-gradient(90deg, #00ffea, #5200ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    padding-right: 6px;
+}

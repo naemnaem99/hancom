@@ -1,0 +1,13 @@
+.grid{
+    display: grid; /* 2차원 격자 켜기 */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.card{
+    background: green;
+    color: antiquewhite;
+    text-align: center;
+    padding: 22px;
+    border-radius: 8px;
+} 

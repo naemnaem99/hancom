@@ -1,0 +1,67 @@
+/*페이지를 일부러 길게 만들어서 스크롤 생성 => fixedm sticky 동작 확인용*/
+body{
+    min-height: 1500px;
+}
+
+.parent{
+    position: relative;
+    border: 2px dashed red;
+    border-radius: 8px;
+    height: 120px;
+    background-color: bisque;
+    margin: 10px 0;
+}
+
+.ptag {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: purple;
+    font-weight: bold;
+    background: gray;
+}
+
+.rel{
+    position:relative;
+    top: 30px;
+    left: 20px;
+    width: 150px;
+    padding: 8px;
+    background: aqua;
+    border-radius: 6px;
+    font-weight: bold;
+    color: green;
+
+}
+
+.abs{
+    position: absolute;
+    background: blueviolet;
+    color: beige;
+    padding: 10px;
+    bottom: 10px;
+    right: 16px;
+    z-index: 10;
+    border-radius: 6px;
+}
+
+.fixed{
+    position: fixed;
+    background-color: gold;
+    color: aquamarine;
+    bottom: 16px;
+    right: 16px;
+    padding: 10px;
+}
+
+.sticky{
+    position: sticky;
+    top: 0;
+    margin: 10px 0;
+    padding: 8px 12px;
+    background: greenyellow;
+    color: bisque;
+    font-weight: bold;
+    bolder-radius: 6px ;
+}

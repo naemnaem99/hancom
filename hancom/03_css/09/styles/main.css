@@ -1,0 +1,16 @@
+.box {
+    width: 120px; 
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: blueviolet;
+    transition: transform 0.5s linear;
+    margin: 200px;
+    border-radius: 16px;
+    
+}
+
+.box:hover{
+    transform: rotate(10deg) scale(1.4);
+}

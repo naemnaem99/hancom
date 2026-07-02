@@ -1,0 +1,20 @@
+.menu{
+    display: flex; 
+    gap:10px;
+    list-style: none;
+}
+
+/*li 부분 디자인 입히기*/
+.menu li{
+    background-color: aquamarine;
+    border-radius:  5px;
+    border-style: dotted;
+    font-size: 30px;
+}
+
+#li1{
+    border-color: black;
+    color:blueviolet
+}
+
+
