@@ -1,0 +1,58 @@
+.star-title {
+    color: navy;
+    font-size: 18px;
+}
+.star-title::before {
+content: "⭐";
+}
+
+.quote {
+    color: gray;
+    font-style: italic;
+}
+.quote::before {
+    content: "'";
+    color: tomato;
+    font-weight: bold;
+}
+.quote::after {
+    content: "'";
+    color: tomato;
+    font-weight: bold;
+}
+
+.underline-deco {
+    position: relative;
+    color: green;
+    display: inline-block;
+}
+.underline-deco::before {
+    content: "";
+    background: royalblue;
+    width: 4px;
+    height: 30px;
+    display: inline-block;
+    border-radius: 2px;
+    vertical-align: middle;
+    margin-right: 8px;
+}
+.underline-deco::after {
+    content: "";
+    background: royalblue;
+    width: 4px;
+    height: 30px;
+    display: inline-block;
+    border-radius: 2px;
+    vertical-align: middle;
+    margin-left: 8px;
+}
+.underline-deco::before {
+    content: "";
+    background: royalblue;
+    width: 4px;
+    height: 30px;
+    display: inline-block;
+    border-radius: 2px;
+    vertical-align: middle;
+    margin-right: 8px;
+}

@@ -1,0 +1,24 @@
+:root {
+    --main-color: red; 
+    --gap: 12px;
+    --body-color: green;
+}
+
+body{
+    background: red;
+}
+
+.row {
+    display: flex;
+    gap: var(--gap);
+}
+
+.btn {
+    padding: 8px 18px;
+    border: none;
+    border-radius: 8px;
+    background: var(--main-color);
+    color: antiquewhite;
+    font-weight: bold;
+
+}
