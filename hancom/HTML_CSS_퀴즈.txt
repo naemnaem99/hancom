@@ -1,0 +1,127 @@
+===================================
+HTML & CSS 실무 퀴즈 (5문제)
+HTML 2문제 / CSS 2문제 / 혼합 1문제
+===================================
+
+[HTML 1] 시맨틱 태그
+
+다음 코드는 실제로 자주 보이는 "div로만 만든" 페이지 구조입니다.
+실무에서 SEO와 접근성(스크린리더) 때문에 아래 코드를 시맨틱하게
+바꾼다면, 각 div를 어떤 태그로 바꾸는 것이 가장 적절할까요?
+
+  <div class="top">로고 / 메뉴</div>
+  <div class="content">
+    <div class="post">글 하나</div>
+  </div>
+  <div class="side">광고, 관련 글</div>
+  <div class="bottom">저작권 정보</div>
+
+A) 전부 <section>으로 통일한다
+B) top → <header>, content → <main>, post → <article>,
+   side → <aside>, bottom → <footer>
+C) 전부 <div>를 유지하고 class 이름만 명확히 짓는다
+D) top → <nav>, content → <div>, side → <div>, bottom → <div>
+
+
+[HTML 2] 폼(form) 접근성 / 유효성 검사
+
+다음은 실무 회원가입 폼에서 흔히 발견되는 문제 코드입니다.
+
+  <p>이메일</p>
+  <input type="text" placeholder="이메일 입력">
+  <button>가입하기</button>
+
+이 코드를 실무 기준(접근성 + 기본 유효성 검사)으로 개선하려면
+무엇을 고쳐야 할까요? (가장 핵심적인 것 하나를 고르세요)
+
+A) placeholder 문구를 더 친절하게 바꾼다
+B) <p>를 <label for="email">로 바꾸고 <input id="email" type="email" required>
+   로 연결/타입 지정한다
+C) <button>을 <a>로 바꾼다
+D) <input>에 style="color:red"를 추가한다
+
+
+[CSS 1] Flexbox
+
+카드 3개를 가로로 나열하면서 "화면 너비가 얼마든 3개가 항상
+동일한 너비"가 되게 만들고 싶습니다. 부모에 display:flex를
+준 상태에서, 각 카드(.card)에 추가해야 할 속성은?
+
+  .row { display: flex; gap: 10px; }
+  .card { /* 여기에 무엇을 추가? */ }
+
+A) .card { width: auto; }
+B) .card { flex: 1; }
+C) .card { position: absolute; }
+D) .card { display: block; }
+
+
+[CSS 2] 박스 모델 (box-sizing)
+
+버튼에 padding: 12px 20px; 을 줬더니 의도한 width: 200px보다
+실제 렌더링 크기가 커져서 레이아웃이 깨졌습니다. 실무에서
+가장 표준적으로 쓰는 해결 방법은?
+
+  .btn {
+    width: 200px;
+    padding: 12px 20px;
+    border: 2px solid #000;
+  }
+
+A) width를 200px보다 작게 여러 번 조정해서 맞춘다
+B) * { box-sizing: border-box; } 를 리셋 규칙으로 추가해서
+   padding/border를 width 안에 포함시킨다
+C) padding을 margin으로 바꾼다
+D) border를 삭제한다
+
+
+[혼합] 반응형 시맨틱 레이아웃
+
+아래처럼 HTML은 시맨틱하게 잘 짜여 있습니다.
+
+  <header>
+    <h1>로고</h1>
+    <nav class="menu">홈 | 소개 | 연락처</nav>
+  </header>
+
+PC에서는 메뉴가 가로로 나열되길 원하지만, 모바일(화면 너비
+600px 이하)에서는 세로로 쌓이길 원합니다. HTML 구조는 그대로
+두고 CSS만으로 이를 구현하려면 어떻게 해야 할까요?
+
+A) HTML에 모바일용 <nav> 태그를 하나 더 만들어 둔다
+B) .menu { display: flex; } 로 기본 가로 배치를 만들고,
+   @media (max-width: 600px) { .menu { flex-direction: column; } }
+   로 모바일에서만 방향을 바꾼다
+C) JavaScript로 화면 크기를 감지해서 태그를 통째로 교체한다
+D) 처음부터 <nav>를 만들지 않고 <div>만 사용한다
+
+
+===================================
+정답 및 해설
+===================================
+
+[HTML 1] 정답: B
+- header(상단 로고/메뉴), main(핵심 콘텐츠), article(독립된 글),
+  aside(사이드바), footer(하단 정보)로 나누면 이름만 봐도 구조를
+  알 수 있어 SEO와 스크린리더 탐색에 유리합니다.
+
+[HTML 2] 정답: B
+- <label for>와 <input id>를 짝지어야 스크린리더가 "이 입력칸이
+  이메일 칸"이라는 걸 인식하고, type="email"과 required는
+  브라우저가 자체적으로 형식/필수 여부를 검사해줍니다.
+
+[CSS 1] 정답: B
+- flex: 1은 "남는 공간을 균등하게 나눠 가진다"는 뜻으로, 형제
+  요소 개수와 화면 너비에 관계없이 카드 너비를 항상 동일하게
+  맞춰줍니다. 실무에서 카드/그리드 레이아웃에 자주 쓰입니다.
+
+[CSS 2] 정답: B
+- box-sizing: border-box는 padding과 border를 width/height 안에
+  포함해서 계산하는 방식으로, 실무 CSS 리셋(reset)에 거의
+  항상 포함되는 규칙입니다.
+
+[혼합] 정답: B
+- 미디어 쿼리(@media)로 특정 화면 너비에서만 CSS 규칙을
+  덮어쓰는 것이 반응형 웹의 기본 원리입니다. HTML 구조는 하나만
+  유지하고, CSS만 화면 크기에 따라 다르게 적용하는 것이 실무
+  표준 방식입니다.

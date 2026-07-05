@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles/main.css">
+  <title>미니 프로젝트 - HTML,CSS (모노크롬)</title>
+</head>
+<body>
+
+<div class="bg">
+  <div class="s h"></div><div class="s c"></div>
+  <div class="s h"></div><div class="s c"></div>
+  <div class="s h"></div><div class="s c"></div>
+  <div class="s h"></div><div class="s c"></div>
+  <div class="s h"></div><div class="s c"></div>
+  <div class="s h"></div><div class="s c"></div>
+  <div class="s h"></div><div class="s c"></div>
+  <div class="s h"></div><div class="s c"></div>
+  <div class="s h"></div><div class="s c"></div>
+  <div class="s h"></div><div class="s c"></div>
+  <div class="s h"></div><div class="s c"></div>
+  <div class="s h"></div><div class="s c"></div>
+  <div class="s h"></div><div class="s c"></div>
+  <div class="s h"></div><div class="s c"></div>
+  <div class="s h"></div><div class="s c"></div>
+  <div class="s h"></div><div class="s c"></div>
+  <div class="s h"></div><div class="s c"></div>
+  <div class="s h"></div><div class="s c"></div>
+  <div class="s h"></div><div class="s c"></div>
+  <div class="s h"></div><div class="s c"></div>
+  <div class="s h"></div><div class="s c"></div>
+  <div class="s h"></div><div class="s c"></div>
+  <div class="s h"></div><div class="s c"></div>
+  <div class="s h"></div><div class="s c"></div>
+  <div class="s h"></div><div class="s c"></div>
+</div>
+
+ <div class="menu">
+    <details>
+        <summary>HTML CSS 정리</summary>
+          <div class="sub-item">
+          <p>HTML</p>
+          <div class="card">
+          <div class="card-body">
+            <p><strong>HTML이란?</strong></p>
+            <p>HTML(HyperText Markup Language)은 웹 페이지의 <strong>뼈대(구조)</strong>를 만드는 마크업 언어입니다. "이 텍스트는 제목이다", "이건 표다", "이건 입력칸이다" 처럼 콘텐츠의 의미와 구조를 태그로 표시하며, 실제 디자인(색, 크기, 배치)은 CSS가 담당합니다.</p>
+
+            <h4>1. 기본 구조 (Boilerplate)</h4>
+            <p>모든 HTML 문서에 공통으로 들어가는 뼈대입니다.</p>
+            <table>
+              <tr><th>태그</th><th>역할</th></tr>
+              <tr><td>&lt;!DOCTYPE html&gt;</td><td>"이 문서는 HTML5 문서다" 선언</td></tr>
+              <tr><td>&lt;html lang="ko"&gt;</td><td>문서 시작, 언어 설정</td></tr>
+              <tr><td>&lt;head&gt;</td><td>화면에 안 보이는 설정 칸 (메타정보, 제목, CSS 연결)</td></tr>
+              <tr><td>&lt;meta charset="UTF-8"&gt;</td><td>한글이 깨지지 않게 인코딩 지정</td></tr>
+              <tr><td>&lt;title&gt;</td><td>브라우저 탭에 뜨는 제목</td></tr>
+              <tr><td>&lt;body&gt;</td><td>화면에 실제로 보이는 내용 칸</td></tr>
+            </table>
+            <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ko"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;자 드가자&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;안녕하세요! 제 첫 웹페이지입니다.&lt;/h1&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+            <h4>2. 텍스트 &amp; 제목</h4>
+            <table>
+              <tr><th>태그</th><th>역할</th></tr>
+              <tr><td>&lt;h1&gt;~&lt;h6&gt;</td><td>제목 (숫자가 작을수록 크고 중요)</td></tr>
+              <tr><td>&lt;p&gt;</td><td>문단</td></tr>
+              <tr><td>&lt;br&gt;</td><td>줄바꿈</td></tr>
+              <tr><td>&lt;hr&gt;</td><td>가로 구분선</td></tr>
+              <tr><td>&lt;strong&gt;</td><td>굵게 강조 (의미상 "중요")</td></tr>
+              <tr><td>&lt;em&gt;</td><td>기울임 강조 (의미상 "강조")</td></tr>
+              <tr><td>&lt;mark&gt;</td><td>형광펜 표시</td></tr>
+              <tr><td>&lt;small&gt;</td><td>작은 글씨 (저작권 등 부가 정보)</td></tr>
+              <tr><td>&lt;sub&gt; / &lt;sup&gt;</td><td>아래첨자 / 위첨자</td></tr>
+              <tr><td>&lt;blockquote&gt;</td><td>인용문</td></tr>
+            </table>
+            <pre><code>&lt;h1&gt;글자 꾸미기&lt;/h1&gt;
+&lt;p&gt;&lt;em&gt;기울임 강조&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;mark&gt;형광펜&lt;/mark&gt;&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;작게 쓰는 글씨&lt;/small&gt;&lt;/p&gt;
+&lt;blockquote&gt;인용문&lt;/blockquote&gt;
+&lt;p&gt;H&lt;sub&gt;2&lt;/sub&gt;O&lt;/p&gt;
+&lt;p&gt;X&lt;sup&gt;2&lt;/sup&gt;&lt;/p&gt;</code></pre>
+            <p class="src">⚠️ 실습 파일 원본에는 &lt;suP&gt;처럼 태그 대소문자가 섞여 있었는데, 태그명은 대소문자를 구분하지 않아도 동작은 하지만 &lt;sup&gt;로 소문자 통일하는 게 좋은 습관입니다.</p>
+
+            <h4>3. 리스트</h4>
+            <table>
+              <tr><th>태그</th><th>역할</th></tr>
+              <tr><td>&lt;ul&gt;</td><td>순서 없는 목록 (불릿)</td></tr>
+              <tr><td>&lt;ol&gt;</td><td>순서 있는 목록 (번호), type="A"로 A,B,C.. 표기 가능</td></tr>
+              <tr><td>&lt;li&gt;</td><td>목록 항목</td></tr>
+            </table>
+            <pre><code>&lt;ol&gt;
+  &lt;li&gt;일어나기&lt;/li&gt;
+  &lt;li&gt;세수하기&lt;/li&gt;
+  &lt;li&gt;아침먹기&lt;/li&gt;
+  &lt;ol type="A"&gt;
+    &lt;li&gt;콩&lt;/li&gt;
+    &lt;li&gt;고기&lt;/li&gt;
+    &lt;li&gt;밥&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/ol&gt;</code></pre>
+
+            <h4>4. 링크 &amp; 이미지</h4>
+            <table>
+              <tr><th>태그</th><th>역할</th></tr>
+              <tr><td>&lt;a href="..."&gt;</td><td>링크. mailto:, tel: 로 이메일/전화 링크도 가능</td></tr>
+              <tr><td>&lt;img src="..." alt="..."&gt;</td><td>이미지 삽입</td></tr>
+            </table>
+            <pre><code>&lt;div&gt;&lt;a href="https://www.google.com"&gt;구글로 가기&lt;/a&gt;&lt;/div&gt;
+&lt;div&gt;&lt;a href="https://www.naver.com"&gt;네이버로 가기&lt;/a&gt;&lt;/div&gt;</code></pre>
+            <pre><code>&lt;p&gt;블로그: &lt;a href="mailto:jiho@example.com"&gt;jiho@example.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;전화: &lt;a href="tel:010-1234-5678"&gt;010-1234-5678&lt;/a&gt;&lt;/p&gt;</code></pre>
+
+            <h4>5. 테이블</h4>
+            <table>
+              <tr><th>태그</th><th>역할</th></tr>
+              <tr><td>&lt;table&gt;</td><td>표 전체 상자 (border 속성으로 테두리)</td></tr>
+              <tr><td>&lt;tr&gt;</td><td>가로 한 줄</td></tr>
+              <tr><td>&lt;th&gt;</td><td>제목 칸</td></tr>
+              <tr><td>&lt;td&gt;</td><td>내용 칸</td></tr>
+              <tr><td>&lt;thead&gt; / &lt;tbody&gt;</td><td>표의 머리글 영역 / 본문 영역 구분</td></tr>
+              <tr><td>colspan / rowspan</td><td>칸 병합 (가로/세로)</td></tr>
+            </table>
+            <pre><code>&lt;table border="1"&gt;
+  &lt;tr&gt;&lt;th&gt;요일&lt;/th&gt;&lt;th&gt;과목&lt;/th&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;월&lt;/td&gt;&lt;td&gt;코딩 이해&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;화&lt;/td&gt;&lt;td&gt;코딩 기초 html&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+
+            <h4>6. 폼 &amp; 입력</h4>
+            <table>
+              <tr><th>태그/속성</th><th>역할</th></tr>
+              <tr><td>&lt;form&gt;</td><td>입력칸들을 담는 상자</td></tr>
+              <tr><td>&lt;label&gt;</td><td>입력칸 설명 라벨 (for로 input id와 연결)</td></tr>
+              <tr><td>&lt;input type="..."&gt;</td><td>text, email, password, checkbox, radio, date 등</td></tr>
+              <tr><td>name</td><td>같은 그룹의 radio를 묶어 중복 선택 방지</td></tr>
+              <tr><td>&lt;textarea&gt;</td><td>여러 줄 텍스트 입력</td></tr>
+              <tr><td>&lt;select&gt; / &lt;option&gt;</td><td>드롭다운 선택지</td></tr>
+              <tr><td>&lt;button&gt;</td><td>제출/초기화 버튼</td></tr>
+              <tr><td>&lt;fieldset&gt; / &lt;legend&gt;</td><td>관련 입력들을 그룹으로 묶고 제목 달기</td></tr>
+            </table>
+            <pre><code>&lt;form&gt;
+  &lt;label&gt;이메일: &lt;input type="email" placeholder="hancom@hancom.com"&gt;&lt;/label&gt;
+  &lt;label&gt;비밀번호: &lt;input type="password"&gt;&lt;/label&gt;
+  &lt;label&gt;동의: &lt;input type="checkbox"&gt;&lt;/label&gt;
+  &lt;label&gt;성별: &lt;input type="radio" name="gender"&gt; 남&lt;/label&gt;
+  &lt;label&gt;&lt;input type="radio" name="gender"&gt; 여&lt;/label&gt;
+  &lt;label&gt;날짜: &lt;input type="date"&gt;&lt;/label&gt;
+  &lt;textarea&gt;안녕하세요!&lt;/textarea&gt;
+  &lt;select&gt;
+    &lt;option&gt;서울&lt;/option&gt;
+    &lt;option&gt;부산&lt;/option&gt;
+    &lt;option&gt;제주&lt;/option&gt;
+  &lt;/select&gt;
+&lt;/form&gt;</code></pre>
+            <p class="src">radio는 여러 개 중 하나만 고르는 동그라미 버튼이라, 선택지가 2개 이상이면 name을 똑같이 줘서 하나의 그룹으로 묶어야 합니다.</p>
+
+            <h4>7. 시맨틱 레이아웃 — div/span과의 차이</h4>
+            <p>div는 뜻이 없는 빈 상자(블록)이고, span은 뜻이 없는 빈 상자(인라인, 줄바꿈 없음)입니다. 반면 <strong>시맨틱 태그</strong>는 이름만 봐도 어떤 구역인지 드러납니다.</p>
+            <table>
+              <tr><th>시맨틱 태그</th><th>역할</th></tr>
+              <tr><td>&lt;header&gt;</td><td>페이지/섹션 상단 (제목, 네비게이션)</td></tr>
+              <tr><td>&lt;nav&gt;</td><td>내비게이션 메뉴</td></tr>
+              <tr><td>&lt;main&gt;</td><td>페이지의 핵심 콘텐츠</td></tr>
+              <tr><td>&lt;section&gt;</td><td>주제로 묶인 구역</td></tr>
+              <tr><td>&lt;article&gt;</td><td>독립적으로 완결된 글 하나</td></tr>
+              <tr><td>&lt;aside&gt;</td><td>본문 옆 보조 정보 (사이드바)</td></tr>
+              <tr><td>&lt;footer&gt;</td><td>페이지/섹션 하단</td></tr>
+              <tr><td>&lt;div&gt;</td><td>뜻 없는 블록 상자 — 스타일링을 위한 그룹핑용</td></tr>
+              <tr><td>&lt;span&gt;</td><td>뜻 없는 인라인 상자 — 문장 중 일부만 감쌀 때</td></tr>
+            </table>
+            <pre><code>&lt;header&gt;
+  &lt;h1&gt;시맨틱 구조&lt;/h1&gt;
+  &lt;nav&gt;홈 ㅣ 소개 ㅣ 연락처&lt;/nav&gt;
+&lt;/header&gt;
+&lt;main&gt;
+  &lt;section&gt;
+    &lt;article&gt;첫 번째 글 내용&lt;/article&gt;
+    &lt;article&gt;두 번째 글 내용&lt;/article&gt;
+  &lt;/section&gt;
+&lt;/main&gt;
+&lt;aside&gt;곁다리 정보(사이드바)&lt;/aside&gt;
+&lt;footer&gt;2026 내 사이트&lt;/footer&gt;</code></pre>
+            <p class="src">핵심: header, nav, main, section, article, aside, footer</p>
+            <pre><code>&lt;div class="card"&gt; &lt;!-- div: 뜻 없는 구역 나누기용 상자 --&gt;
+  &lt;img src="..."&gt;
+  &lt;h3&gt;운동화&lt;/h3&gt;
+  &lt;p&gt;&lt;strong&gt;99,999원&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+            <pre><code>&lt;p&gt;글자 중 &lt;span&gt;여기만&lt;/span&gt; 강조&lt;/p&gt; &lt;!-- span: 줄 안 바꾸는 인라인 상자 --&gt;</code></pre>
+            <p><strong>언제 무엇을 쓸까?</strong><br>
+            - 페이지의 큰 구역(머리말/메뉴/본문/사이드바/꼬리말)을 나눌 때 → 뜻이 맞는 시맨틱 태그<br>
+            - 스타일링만을 위해 여러 요소를 감싸야 하는데 마땅한 의미가 없을 때 → div(블록) / span(인라인)</p>
+
+            <h4>8. 미디어 (iframe / video / audio)</h4>
+            <table>
+              <tr><th>태그</th><th>역할</th></tr>
+              <tr><td>&lt;iframe&gt;</td><td>페이지 안에 다른 페이지(유튜브, 지도 등) 삽입</td></tr>
+              <tr><td>&lt;video&gt;</td><td>동영상 재생</td></tr>
+              <tr><td>&lt;audio&gt;</td><td>소리 재생</td></tr>
+              <tr><td>&lt;source&gt;</td><td>video/audio 안에서 실제 파일 경로 지정</td></tr>
+            </table>
+            <pre><code>&lt;iframe width="400" height="260"
+  src="https://www.youtube.com/embed/RhZLTbsDzqo"
+  title="개발자를 위한 딥하우스 음악"
+  frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;</code></pre>
+
+            <h4>9. 기타 인터랙티브 태그</h4>
+            <table>
+              <tr><th>태그</th><th>역할</th></tr>
+              <tr><td>&lt;details&gt;</td><td>클릭하면 펼쳐지는 상자</td></tr>
+              <tr><td>&lt;summary&gt;</td><td>details의 항상 보이는 제목 줄</td></tr>
+            </table>
+            <pre><code>&lt;details&gt;
+  &lt;summary&gt;마지막으로 읽은 책&lt;/summary&gt;
+  &lt;img src="..."&gt;
+&lt;/details&gt;</code></pre>
+          </div>
+          </div>
+          </div>
+          <div class="sub-item">
+          <p>CSS</p>
+          <div class="card">
+          <div class="card-body">
+            <p><strong>CSS란?</strong></p>
+            <p>CSS(Cascading Style Sheets)는 HTML로 만든 뼈대에 <strong>디자인(색, 크기, 배치, 애니메이션 등)</strong>을 입히는 언어입니다. "어떤 요소를(선택자) 어떻게 꾸밀지(속성: 값)"를 규칙으로 작성합니다.</p>
+
+            <h4>1. 선택자 (Selector)</h4>
+            <table>
+              <tr><th>선택자</th><th>의미</th><th>예</th></tr>
+              <tr><td>타입 선택자</td><td>태그 이름으로 선택</td><td>h1 { }</td></tr>
+              <tr><td>클래스 선택자</td><td>class="..." 로 선택</td><td>.special { }</td></tr>
+              <tr><td>ID 선택자</td><td>id="..." 로 선택 (문서 내 유일)</td><td>#li1 { }</td></tr>
+              <tr><td>자손 선택자</td><td>A 안의 B</td><td>li em { }</td></tr>
+              <tr><td>:hover 등 pseudo-class</td><td>특정 상태일 때</td><td>a:hover { }</td></tr>
+              <tr><td>::before/::after</td><td>요소 앞/뒤에 가상 콘텐츠 삽입</td><td>.info::after { }</td></tr>
+            </table>
+            <pre><code>/* 우선순위(specificity): 타입 &lt; 클래스 &lt; 자손 조합 &lt; 인라인 순으로 점점 구체적 */
+h1 { color: red }
+p { color: green }
+.special { color: orange }
+li em { color: purple }</code></pre>
+
+            <h4>2. 박스모델 (Box Model)</h4>
+            <table>
+              <tr><th>속성</th><th>역할</th></tr>
+              <tr><td>border</td><td>테두리 (두께, 스타일, 색)</td></tr>
+              <tr><td>margin</td><td>요소 바깥 여백</td></tr>
+              <tr><td>padding</td><td>요소 안쪽 여백(테두리와 내용 사이)</td></tr>
+              <tr><td>box-sizing: border-box</td><td>width/height에 border·padding까지 포함해서 계산</td></tr>
+              <tr><td>border-radius</td><td>모서리 둥글게</td></tr>
+              <tr><td>list-style: none</td><td>리스트 기본 불릿 제거</td></tr>
+            </table>
+            <pre><code>ul {
+  background-color: white;
+  border: 6px double navy;
+  height: 100px;
+  list-style: none;
+  margin: 20px;
+  padding: 30px;
+  width: 100px;
+}</code></pre>
+
+            <h4>3. Flexbox</h4>
+            <table>
+              <tr><th>속성</th><th>역할</th></tr>
+              <tr><td>display: flex</td><td>자식 요소들을 한 줄(가로/세로)로 배치</td></tr>
+              <tr><td>flex-direction</td><td>배치 방향 (row/column)</td></tr>
+              <tr><td>align-items</td><td>세로축 정렬</td></tr>
+              <tr><td>justify-content</td><td>가로축 정렬</td></tr>
+              <tr><td>gap</td><td>요소 사이 간격</td></tr>
+              <tr><td>flex: 1</td><td>남는 공간을 균등하게 나눠 가짐</td></tr>
+            </table>
+            <pre><code>.box {
+  display: flex;
+  flex-direction: row; /* 가로 배치: 왼 -&gt; 오 */
+  gap: 10px;
+}
+.card {
+  flex: 1; /* 남는 가로 공간 균등 분할 → 카드 너비 동일 */
+}</code></pre>
+
+            <h4>4. Grid</h4>
+            <table>
+              <tr><th>속성</th><th>역할</th></tr>
+              <tr><td>display: grid</td><td>2차원 격자 레이아웃 켜기</td></tr>
+              <tr><td>grid-template-columns</td><td>열 개수/너비 지정 (repeat(2, 1fr) = 동일 너비 2열)</td></tr>
+              <tr><td>gap</td><td>격자 칸 사이 간격</td></tr>
+            </table>
+            <pre><code>.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}</code></pre>
+
+            <h4>5. Position (배치)</h4>
+            <table>
+              <tr><th>값</th><th>역할</th></tr>
+              <tr><td>relative</td><td>원래 자리를 기준으로 살짝 이동 (자기 자리는 그대로 차지)</td></tr>
+              <tr><td>absolute</td><td>가장 가까운 relative 조상 기준으로 배치</td></tr>
+              <tr><td>fixed</td><td>화면(뷰포트) 기준 고정, 스크롤해도 안 움직임</td></tr>
+              <tr><td>sticky</td><td>스크롤하다 특정 지점에서 딱 붙음</td></tr>
+              <tr><td>z-index</td><td>겹칠 때 위/아래 순서</td></tr>
+            </table>
+            <pre><code>.abs {
+  position: absolute;
+  bottom: 10px;
+  right: 16px;
+  z-index: 10;
+}
+.fixed {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+}
+.sticky {
+  position: sticky;
+  top: 0;
+}</code></pre>
+
+            <h4>6. Transform / Transition / Animation</h4>
+            <table>
+              <tr><th>속성</th><th>역할</th></tr>
+              <tr><td>transform</td><td>이동(translate)/회전(rotate)/크기(scale) 변형</td></tr>
+              <tr><td>transition</td><td>속성 값이 바뀔 때 부드럽게 변화</td></tr>
+              <tr><td>@keyframes + animation</td><td>반복/자동 애니메이션 정의</td></tr>
+            </table>
+            <pre><code>@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-30px); }
+}
+.ball:hover {
+  animation: float 1.5s ease-in-out infinite;
+}</code></pre>
+            <pre><code>.card {
+  opacity: 0.85;
+  transition: all 0.3s ease; /* 바뀔 때 0.3초 부드럽게 */
+}
+.card:hover {
+  opacity: 1;
+  transform: translateY(-8px);
+  box-shadow: 0 16px 32px rgb(115, 138, 80);
+}</code></pre>
+
+            <h4>7. 시각 효과 (그림자 / 그라데이션 / 가상요소 꾸미기)</h4>
+            <pre><code>.info { position: relative; }
+.info::after {
+  content: "도움말";
+  display: none;
+}
+.info:hover::after {
+  display: block;
+  position: absolute;
+  background: black;
+  color: white;
+  border-radius: 4px;
+}</code></pre>
+            <p class="src">순수 CSS만으로 만드는 툴팁(hover 시 말풍선)</p>
+            <pre><code>.quote::before { content: "'"; color: tomato; }
+.quote::after  { content: "'"; color: tomato; }</code></pre>
+            <p class="src">::before/::after의 content로 텍스트 앞뒤에 장식 추가</p>
+
+            <h4>8. 반응형 (Media Query)</h4>
+            <pre><code>/* 화면 폭이 600px 이하일 때만 아래 규칙 적용 (모바일) */
+@media (max-width: 600px) {
+  .box {
+    flex-direction: column;
+  }
+}</code></pre>
+
+            <h4>9. CSS 변수 (Custom Properties)</h4>
+            <pre><code>:root {
+  --main-color: red;
+  --gap: 12px;
+}
+.row {
+  display: flex;
+  gap: var(--gap);
+}
+.btn {
+  background: var(--main-color);
+}</code></pre>
+
+            <h4>10. CSS 적용 3가지 방법 &amp; 우선순위</h4>
+            <table>
+              <tr><th>방법</th><th>작성 위치</th><th>우선순위</th></tr>
+              <tr><td>외부 스타일시트</td><td>&lt;link rel="stylesheet" href="styles/main.css"&gt;</td><td>낮음</td></tr>
+              <tr><td>내부 스타일</td><td>&lt;style&gt; 태그를 &lt;head&gt; 안에</td><td>중간</td></tr>
+              <tr><td>인라인 스타일</td><td>태그 안 style="..." 속성</td><td>가장 높음</td></tr>
+            </table>
+            <pre><code>&lt;!-- 외부 --&gt;
+&lt;link rel="stylesheet" href="styles/main.css"&gt;
+&lt;!-- 내부 --&gt;
+&lt;style&gt;
+  p { color: green }
+&lt;/style&gt;
+...
+&lt;!-- 인라인 --&gt;
+&lt;p style="color:red;"&gt;인라인으로 빨강&lt;/p&gt;</code></pre>
+
+            <h4>11. CSS Reset</h4>
+            <p>브라우저마다 다른 기본 여백/스타일을 없애고 동일한 출발선에서 시작하기 위한 초기화 패턴입니다.</p>
+            <pre><code>* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}</code></pre>
+          </div>
+          </div>
+          </div>
+
+    </details>
+
+    <details>
+        <summary>QUIZ</summary>
+        <div class="sub-item">
+          <p>1</p>
+          <div class="card">
+          <div class="card-body">
+            <h4>[HTML 1] 시맨틱 태그</h4>
+            <p>다음 코드는 실제로 자주 보이는 "div로만 만든" 페이지 구조입니다. 실무에서 SEO와 접근성(스크린리더) 때문에 아래 코드를 시맨틱하게 바꾼다면, 각 div를 어떤 태그로 바꾸는 것이 가장 적절할까요?</p>
+            <pre><code>&lt;div class="top"&gt;로고 / 메뉴&lt;/div&gt;
+&lt;div class="content"&gt;
+  &lt;div class="post"&gt;글 하나&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="side"&gt;광고, 관련 글&lt;/div&gt;
+&lt;div class="bottom"&gt;저작권 정보&lt;/div&gt;</code></pre>
+            <p>A) 전부 &lt;section&gt;으로 통일한다<br>
+            B) top → &lt;header&gt;, content → &lt;main&gt;, post → &lt;article&gt;, side → &lt;aside&gt;, bottom → &lt;footer&gt;<br>
+            C) 전부 &lt;div&gt;를 유지하고 class 이름만 명확히 짓는다<br>
+            D) top → &lt;nav&gt;, content → &lt;div&gt;, side → &lt;div&gt;, bottom → &lt;div&gt;</p>
+            <p class="answer"><strong>정답: B</strong><br>
+            header(상단 로고/메뉴), main(핵심 콘텐츠), article(독립된 글), aside(사이드바), footer(하단 정보)로 나누면 이름만 봐도 구조를 알 수 있어 SEO와 스크린리더 탐색에 유리합니다.</p>
+          </div>
+          </div>
+        </div>
+        <div class="sub-item">
+          <p>2</p>
+          <div class="card">
+          <div class="card-body">
+            <h4>[HTML 2] 폼(form) 접근성 / 유효성 검사</h4>
+            <p>다음은 실무 회원가입 폼에서 흔히 발견되는 문제 코드입니다.</p>
+            <pre><code>&lt;p&gt;이메일&lt;/p&gt;
+&lt;input type="text" placeholder="이메일 입력"&gt;
+&lt;button&gt;가입하기&lt;/button&gt;</code></pre>
+            <p>이 코드를 실무 기준(접근성 + 기본 유효성 검사)으로 개선하려면 무엇을 고쳐야 할까요? (가장 핵심적인 것 하나를 고르세요)</p>
+            <p>A) placeholder 문구를 더 친절하게 바꾼다<br>
+            B) &lt;p&gt;를 &lt;label for="email"&gt;로 바꾸고 &lt;input id="email" type="email" required&gt;로 연결/타입 지정한다<br>
+            C) &lt;button&gt;을 &lt;a&gt;로 바꾼다<br>
+            D) &lt;input&gt;에 style="color:red"를 추가한다</p>
+            <p class="answer"><strong>정답: B</strong><br>
+            &lt;label for&gt;와 &lt;input id&gt;를 짝지어야 스크린리더가 "이 입력칸이 이메일 칸"이라는 걸 인식하고, type="email"과 required는 브라우저가 자체적으로 형식/필수 여부를 검사해줍니다.</p>
+          </div>
+          </div>
+        </div>
+        <div class="sub-item">
+          <p>3</p>
+          <div class="card">
+          <div class="card-body">
+            <h4>[CSS 1] Flexbox</h4>
+            <p>카드 3개를 가로로 나열하면서 "화면 너비가 얼마든 3개가 항상 동일한 너비"가 되게 만들고 싶습니다. 부모에 display:flex를 준 상태에서, 각 카드(.card)에 추가해야 할 속성은?</p>
+            <pre><code>.row { display: flex; gap: 10px; }
+.card { /* 여기에 무엇을 추가? */ }</code></pre>
+            <p>A) .card { width: auto; }<br>
+            B) .card { flex: 1; }<br>
+            C) .card { position: absolute; }<br>
+            D) .card { display: block; }</p>
+            <p class="answer"><strong>정답: B</strong><br>
+            flex: 1은 "남는 공간을 균등하게 나눠 가진다"는 뜻으로, 형제 요소 개수와 화면 너비에 관계없이 카드 너비를 항상 동일하게 맞춰줍니다. 실무에서 카드/그리드 레이아웃에 자주 쓰입니다.</p>
+          </div>
+          </div>
+        </div>
+        <div class="sub-item">
+          <p>4</p>
+          <div class="card">
+          <div class="card-body">
+            <h4>[CSS 2] 박스 모델 (box-sizing)</h4>
+            <p>버튼에 padding: 12px 20px; 을 줬더니 의도한 width: 200px보다 실제 렌더링 크기가 커져서 레이아웃이 깨졌습니다. 실무에서 가장 표준적으로 쓰는 해결 방법은?</p>
+            <pre><code>.btn {
+  width: 200px;
+  padding: 12px 20px;
+  border: 2px solid #000;
+}</code></pre>
+            <p>A) width를 200px보다 작게 여러 번 조정해서 맞춘다<br>
+            B) * { box-sizing: border-box; } 를 리셋 규칙으로 추가해서 padding/border를 width 안에 포함시킨다<br>
+            C) padding을 margin으로 바꾼다<br>
+            D) border를 삭제한다</p>
+            <p class="answer"><strong>정답: B</strong><br>
+            box-sizing: border-box는 padding과 border를 width/height 안에 포함해서 계산하는 방식으로, 실무 CSS 리셋(reset)에 거의 항상 포함되는 규칙입니다.</p>
+          </div>
+          </div>
+        </div>
+        <div class="sub-item">
+          <p>5</p>
+          <div class="card">
+          <div class="card-body">
+            <h4>[혼합] 반응형 시맨틱 레이아웃</h4>
+            <p>아래처럼 HTML은 시맨틱하게 잘 짜여 있습니다.</p>
+            <pre><code>&lt;header&gt;
+  &lt;h1&gt;로고&lt;/h1&gt;
+  &lt;nav class="menu"&gt;홈 | 소개 | 연락처&lt;/nav&gt;
+&lt;/header&gt;</code></pre>
+            <p>PC에서는 메뉴가 가로로 나열되길 원하지만, 모바일(화면 너비 600px 이하)에서는 세로로 쌓이길 원합니다. HTML 구조는 그대로 두고 CSS만으로 이를 구현하려면 어떻게 해야 할까요?</p>
+            <p>A) HTML에 모바일용 &lt;nav&gt; 태그를 하나 더 만들어 둔다<br>
+            B) .menu { display: flex; } 로 기본 가로 배치를 만들고, @media (max-width: 600px) { .menu { flex-direction: column; } }로 모바일에서만 방향을 바꾼다<br>
+            C) JavaScript로 화면 크기를 감지해서 태그를 통째로 교체한다<br>
+            D) 처음부터 &lt;nav&gt;를 만들지 않고 &lt;div&gt;만 사용한다</p>
+            <p class="answer"><strong>정답: B</strong><br>
+            미디어 쿼리(@media)로 특정 화면 너비에서만 CSS 규칙을 덮어쓰는 것이 반응형 웹의 기본 원리입니다. HTML 구조는 하나만 유지하고, CSS만 화면 크기에 따라 다르게 적용하는 것이 실무 표준 방식입니다.</p>
+          </div>
+          </div>
+        </div>
+
+    </details>
+
+    <details>
+        <summary>CHROMA 웹사이트</summary>
+        <div class="sub-item">
+          <p>CHROMA 웹사이트</p>
+          <div class="card card-site">
+            <img class="bento-image" src="https://s.bentogrids.com/cmf19ear50000lau6ohb2z7xv.png" alt="Chroma 벤토 그리드 (출처: bentogrids.com)">
+            <div class="section-divider"></div>
+            <div class="preview-frame">
+              <iframe src="https://www.trychroma.com/" title="Chroma 랜딩페이지 히어로 섹션" loading="lazy" scrolling="yes" width="1440" height="900"></iframe>
+            </div>
+            <div class="section-divider"></div>
+            <a class="preview-link" href="https://www.trychroma.com/" target="_blank" rel="noopener">👉 클릭! CHROMA 바로가기</a>
+          </div>
+          </div>
+          <div class="sub-item">
+          <p>분석</p>
+          <div class="card">
+          <div class="card-body">
+            <p><strong>trychroma.com 분석 — 배운 HTML/CSS로 실전 사이트 뜯어보기</strong></p>
+            <p>브라우저 개발자도구가 아니라 페이지 소스(curl)와 실제 배포된 CSS 파일을 직접 내려받아 분석했습니다. 여기 나오는 코드는 전부 사이트에 실제로 존재하는 코드입니다.</p>
+
+            <h4>1. 이 사이트는 뭐 하는 곳인가?</h4>
+            <p>Chroma는 <strong>AI 개발자를 위한 오픈소스 벡터/검색 데이터베이스</strong>입니다.</p>
+            <pre><code>&lt;meta name="description" content="Open-source search infrastructure for AI"/&gt;</code></pre>
+            <p>타겟 방문자는 "예쁜 것"보다 "이 도구를 믿고 써도 되는가"를 판단하려는 <strong>개발자</strong>입니다.</p>
+
+            <h4>2. 전체 뼈대 — div/시맨틱 태그와 비교</h4>
+            <p>header/nav/main/section/article/aside/footer를 "이름만 봐도 어떤 구역인지 아는 상자"라고 배웠습니다. 실제 페이지의 태그별 개수:</p>
+            <table>
+              <tr><th>태그</th><th>개수</th><th>비고</th></tr>
+              <tr><td>&lt;header&gt;</td><td>0</td><td>없음</td></tr>
+              <tr><td>&lt;nav&gt;</td><td>3</td><td>상단 내비게이션 1개 + 내부 메뉴 컴포넌트 2개</td></tr>
+              <tr><td>&lt;main&gt;</td><td>1</td><td>페이지 전체를 감싸는 최상위 컨테이너</td></tr>
+              <tr><td>&lt;section&gt;</td><td>1</td><td>토스트 알림 영역(aria-live="polite")이지 본문 섹션 아님</td></tr>
+              <tr><td>&lt;article&gt;</td><td>0</td><td>없음</td></tr>
+              <tr><td>&lt;aside&gt;</td><td>0</td><td>없음</td></tr>
+              <tr><td>&lt;footer&gt;</td><td>0</td><td>없음 (하단 링크 영역은 그냥 div)</td></tr>
+              <tr><td>&lt;h1&gt;</td><td>1</td><td>"Open-source search infrastructure for AI"</td></tr>
+              <tr><td>&lt;h2&gt;/&lt;h3&gt;</td><td>3 / 4</td><td>소제목 계층</td></tr>
+            </table>
+            <pre><code>&lt;body class="... bg-stone-50 text-foreground antialiased overflow-x-hidden"&gt;
+  &lt;main class="marketing-root relative overflow-x-hidden w-full min-h-screen grid grid-rows-[auto_1fr]"&gt;
+    &lt;div class="mb-62 z-10 flex-auto grid grid-cols-[1fr_min(80rem,100%-1rem)_1fr] ..."&gt;
+      &lt;nav class="col-2 w-full border-b lg:border-0"&gt; ... &lt;/nav&gt;
+      &lt;!-- 본문 내용도 전부 div --&gt;
+    &lt;/div&gt;
+  &lt;/main&gt;
+&lt;/body&gt;</code></pre>
+            <p>하단 링크 영역(흔히 "footer"라 부를 부분)은 진짜로는:</p>
+            <pre><code>&lt;h3 class="font-semibold text-sm mb-2"&gt;Product&lt;/h3&gt;
+&lt;a href="/products/chromadb"&gt;Database&lt;/a&gt;
+...
+&lt;h3 class="font-semibold text-sm mb-2"&gt;Legal&lt;/h3&gt;
+&lt;a href="/website-privacy"&gt;Privacy&lt;/a&gt;
+&lt;div class="text-xs text-gray-600"&gt;© 2026&lt;/div&gt;</code></pre>
+            <p class="src"><strong>피드백:</strong> "의미 있는 태그를 쓰자"는 원칙과 다르게, header/footer/article/aside를 아예 안 씁니다. Next.js + 컴포넌트 라이브러리(Base UI/Radix 계열) 기반 실무 프로젝트에서 자주 보이는 트레이드오프입니다. footer가 없으면 스크린리더가 contentinfo 랜드마크로 자동 인식 못 하므로 접근성 관점에선 아쉬운 지점. 반면 h1→h2→h3 제목 계층은 순서를 잘 지켰습니다.</p>
+
+            <h4>3. 레이아웃 — Grid를 한 단계 더 쓴다</h4>
+            <p>우리는 "똑같은 너비로 n등분"하는 grid-template-columns: repeat(2, 1fr)만 다뤘습니다. 이 사이트는:</p>
+            <pre><code>grid-template-rows: auto 1fr;
+grid-template-columns: 1fr min(80rem, 100% - 1rem) 1fr;</code></pre>
+            <p>"1fr [본문] 1fr" 구조로 배경은 화면 끝까지 채우고, 내용물은 가운데 최대 80rem(1280px)로 제한합니다. min() 함수로 트랙 크기 자체를 계산하는 게 다음 단계로 배우면 좋은 실전 패턴입니다.</p>
+
+            <h4>4. CSS 작성 방식 — Tailwind 유틸리티 클래스</h4>
+            <p>외부/내부/인라인 스타일과 "선택자 하나에 속성 여러 개" 방식을 배웠는데, 이 사이트는 클래스 이름 자체가 CSS 속성인 Tailwind 방식입니다.</p>
+            <pre><code>&lt;div class="hidden lg:flex lg:items-center gap-6 lg:gap-2 ml-2 grow"&gt;</code></pre>
+            <p>hidden→lg:flex→lg:items-center→gap-6 처럼 하나의 클래스 = 하나의 CSS 선언. 결과 CSS는 우리가 배운 것과 같지만, 클래스 이름을 매번 새로 짓지 않고 재사용할 수 있어서 실무에서 많이 씁니다.</p>
+
+            <h4>5. CSS 변수 — 실제로는 "디자인 시스템"</h4>
+            <p>:root { --main-color: red; } + var() 개념이, 실제로는 대규모 색상 팔레트로 쓰입니다.</p>
+            <pre><code>:root {
+  --background: #fff;
+  --foreground: #0a0a0a;
+  --primary: #171717;
+  --secondary: #f5f5f5;
+  --border: #e5e5e5;
+  --ring: #a1a1a1;
+  --radius: .625rem;
+  --chart-1: #f05100;
+  /* ... */
+}</code></pre>
+            <p>색의 의미(역할)로 이름 붙인 "디자인 토큰" 방식. --background 하나만 바꾸면 사이트 전체 색이 따라 바뀝니다. --radius 하나로 버튼·카드·인풋의 둥근 모서리를 통일하는 것도 특징.</p>
+            <pre><code>:root { --background: lab(100% 0 0); --foreground: lab(2.75381% 0 0); ... }</code></pre>
+            <p>같은 변수를 lab() 색공간으로 한 번 더 정의 — 와이드 갬멋 디스플레이 지원을 위한 점진적 향상(progressive enhancement)입니다.</p>
+
+            <h4>6. 반응형 — max-width보다 진화한 방식</h4>
+            <pre><code>@media (max-width: 600px) { .box { flex-direction: column; } }</code></pre>
+            <p>이 사이트가 실제로 쓰는 브레이크포인트:</p>
+            <pre><code>@media (min-width: 40rem)  /* sm */
+@media (min-width: 48rem)  /* md */
+@media (min-width: 64rem)  /* lg */
+@media (min-width: 80rem)  /* xl */
+@media (min-width: 96rem)  /* 2xl */</code></pre>
+            <p>차이점: (1) px 대신 rem을 써서 브라우저 글자 크기 배율에 반응형 기준점도 같이 늘어남(접근성에 유리). (2) max-width가 아니라 min-width 기준 — 모바일 퍼스트 설계.</p>
+            <pre><code>@container field-group (min-width: 28rem) { ... }
+@media (hover: hover) { ... }
+@media (forced-colors: active) { ... }</code></pre>
+            <p>@container: 화면이 아니라 부모 상자 크기 기준으로 스타일을 바꾸는 컨테이너 쿼리. (hover:hover): 마우스 기기에서만 호버 효과를 줘서 터치 기기 오작동을 방지. (forced-colors:active): 고대비 모드에서도 UI가 안 깨지게 하는 접근성 대응.</p>
+
+            <h4>7. 애니메이션 — 제품을 설명하는 모션</h4>
+            <p>@keyframes float + hover 조합처럼 커스텀 키프레임을 씁니다.</p>
+            <pre><code>@keyframes flow-data { ... }
+@keyframes flow-down { ... }
+@keyframes reasoning-pulse { ... }
+@keyframes blink-enterprise { ... }
+@keyframes grow-line { ... }</code></pre>
+            <p>"데이터가 흐른다", "AI가 추론하며 맥박친다", "선이 자라난다" — 제품 정체성을 시각적 은유로 표현하는 이름들. 순수 장식이 아니라 "이 회사가 뭘 하는지"를 모션으로 설명합니다.</p>
+
+            <h4>8. 눈에 띄는 접근성 디테일</h4>
+            <p>- 토스트 영역을 &lt;section aria-live="polite"&gt;로 표시 — 새 알림이 뜨면 스크린리더가 자동으로 읽어줌<br>
+            - 모달 제목에 화면엔 안 보이지만 스크린리더는 읽는 숨은 제목이 존재<br>
+            - dark:aria-invalid 등 다크모드용 클래스가 html엔 다크모드가 없는데도 흔적으로 남아있음 → 공용 UI 컴포넌트 라이브러리를 그대로 가져다 쓴 흔적</p>
+          </div>
+          </div>
+        </div>
+        <div class="sub-item">
+          <p>감상평</p>
+          <div class="card">
+          <div class="card-body">
+            <h4>감상평</h4>
+            <p>Chroma는 사실 예쁘게 보이려는 사이트가 아니라 개발자한테 "이 도구 믿고 써도 된다"고 설득하려는 사이트다. 그래서 화려한 그래픽보다는 이 회사가 뭐 하는 곳인지, 얼마나 안정적인지 설명하는 데 힘을 준 티가 난다. 근데 그렇게 기능 설명이 목적인 사이트인데 정작 제일 기억에 남는 건 디자인이었다.</p>
+            <p>화면 자체는 그냥 흑백이다. 근데 이게 차갑거나 심심하지가 않다. 배경도 새하얀 흰색이 아니라 살짝 데운 미색이고 글자도 새까만 검정이 아니라 톤을 좀 낮춘 색이라, 모니터보다는 종이에 인쇄된 걸 보는 느낌에 가깝다. 굳이 꾸미지 않고 이렇게 절제된 흑백을 쓴 게 오히려 겉치레없이 솔직하게 다가와서 더 매력있게 느껴졌다.</p>
+            <p>제일 인상적이었던 건 곳곳에 있는 도트 패턴이다. 이미지가 아니라 옛날 컴퓨터 화면에서 보던 것 같은 네모 블록이랑 선 문자를 글자로 그대로 이어붙여서 다이어그램을 만들어놨고, 심지어 깜빡이면서 흐르는 애니메이션까지 붙어있다. 데이터가 흐른다는 개념을 화려한 그림 대신 옛날 서버실 터미널 느낌으로 표현해놓은 거라 보고 있으면 옛날 도트 프린터 영수증 같은 아날로그 느낌이 확 든다.</p>
+            <p>그림자도 요즘 사이트들처럼 뿌옇게 번지는 부드러운 그림자가 아니라 그냥 오른쪽 아래로 딱 밀어놓은 딱딱한 그림자를 쓴다. 종이를 오려서 붙인 스티커 같은 느낌이다. 폰트도 타자기 느낌 나는 고정폭 글씨체를 곳곳에 섞어 써서 전체적으로 오래된 인쇄물이나 터미널 느낌이 은근히 깔려있다.</p>
+            <p>이 사이트 header나 footer 같은 시맨틱 태그는 거의 안 쓰고 그냥 div에 클래스 이름표만 잔뜩 붙여서 기능 구현한 실용적인 코드다. 근데 방문자 입장에선 그런 뒷단은 전혀 안 보인다.</p>
+            <p>지금 이 미니 프로젝트 페이지 톤도 크로마를 보고 나서 흑백으로 다시 맞췄다. 카드 제목을 검정 바탕에 흰 글씨로 쓴 것도, 점선 구분선을 쓴 것도 이 사이트의 디자인을 참고했다.</p>
+            <p class="answer">기능 설명이 메인인 사이트인데 제일 기억에 남는 건 그 꾸밈없는 흑백 디자인이었다.</p>
+          </div>
+          </div>
+      </div>
+
+    </details>
+
+</div>
+</body>
+</html>
