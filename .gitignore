@@ -1,8 +1,6 @@
 *.mp4
+*.md
 .claude/
 node_modules/
 package-lock.json
 hancom/TIL_blog/
-hancom/CLAUDE.md
-hancom/claude_css_folder.md
-hancom/claude_til.md

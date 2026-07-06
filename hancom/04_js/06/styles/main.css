@@ -1,0 +1,10 @@
+select, button {
+    padding: 6px    12px;
+    font-size: 14px;
+}
+
+p {
+    font-size: 18px;
+    font-weight: 700;
+    margin-top: 15px;
+}
