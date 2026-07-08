@@ -1,0 +1,103 @@
+================================================================
+[CSS 12] position — relative / absolute / fixed / sticky
+작성: 2026-07-02 | 수정: 2026-07-02
+================================================================
+
+Q. position: relative와 absolute는 어떻게 다른가?
+A. relative는 요소가 원래 있던 자리를 기준으로 top/left 등으로 밀어냄.
+   원래 자리는 비워진 채로 유지되고, 주변 요소 배치에 영향을 주지 않음.
+
+   absolute는 원래 자리를 완전히 포기하고,
+   가장 가까운 position 설정 부모를 기준으로 좌표를 잡음.
+   부모에 position이 없으면 계속 위로 올라가 body까지 탐색함.
+
+   그래서 "부모: relative, 자식: absolute" 조합을 세트로 자주 씀.
+   부모가 자식의 기준점이 되도록 의도적으로 relative를 잡아주는 것.
+
+Q. 스크롤해도 화면 상단에 고정되는 네비게이션 바는 sticky로 구현하는가?
+A. 아니다. 대부분 fixed를 씀.
+
+   fixed는 브라우저 화면(viewport) 자체에 고정되어
+   스크롤과 완전히 무관하게 항상 같은 자리에 있음.
+
+   sticky는 부모 요소 범위 안에서만 고정되고,
+   부모가 화면에서 벗어나면 같이 사라짐.
+   그래서 페이지 전체를 따라다녀야 하는 네비게이션 바에는 fixed가 적합.
+
+Q. position: sticky는 어떤 요소를 기준으로 동작하고, 언제 유용한가?
+A. sticky는 자신이 속한 부모 요소를 기준으로 동작함.
+   스크롤 시 지정한 위치(예: top: 0)에 닿으면 붙어있다가,
+   부모 요소가 화면에서 사라지면 같이 사라짐.
+
+   body가 부모이면 페이지 끝까지 따라오므로 fixed처럼 보임.
+   진짜 쓸모는 여러 section이 있을 때:
+
+     <section>
+       <h2 class="sticky">1장 제목</h2>  ← 1장 범위 안에서 상단 고정
+       <p>내용...</p>
+     </section>
+     <section>
+       <h2 class="sticky">2장 제목</h2>  ← 1장 끝나면 교체됨
+     </section>
+
+   각 섹션을 넘어갈 때 제목이 자연스럽게 교체되는 효과.
+   쇼핑몰 카테고리 제목, 긴 문서 챕터 헤더에 활용.
+
+----------------------------------------------------------------
+개념 요약
+----------------------------------------------------------------
+position 종류 비교:
+
+  relative  원래 자리 유지 + 좌표로 밀기. 주변 요소 배치 안 건드림.
+  absolute  원래 자리 포기 + position 설정된 부모 기준으로 좌표 잡기.
+  fixed     브라우저 화면(viewport) 기준 고정. 스크롤 완전 무관.
+  sticky    스크롤 중 지정 위치에 닿으면 고정, 부모 벗어나면 해제.
+
+relative + absolute 세트 패턴:
+  .parent { position: relative; }     ← 자식의 기준점 역할
+  .child  { position: absolute;
+             bottom: 10px;
+             right: 16px; }           ← 부모 기준으로 위치 계산
+
+fixed vs sticky 비교:
+  기준점     fixed → 브라우저 화면    sticky → 부모 요소
+  고정 지속  fixed → 항상            sticky → 부모 범위 안에서만
+  주 용도    fixed → 네비바, 플로팅   sticky → 섹션 제목, 테이블 헤더
+
+----------------------------------------------------------------
+[수정: 2026-07-02] fixed 실전 활용 + JS 드래그 구현
+----------------------------------------------------------------
+
+Q. 웹페이지에서 항상 떠있는 전화 버튼, 채팅 상담 버튼은 어떻게 구현하는가?
+A. position: fixed로 구현. 화면 특정 위치(보통 우측 하단)에 고정해두면
+   스크롤과 무관하게 항상 같은 자리에 떠있음.
+   플로팅 버튼이라고도 부름.
+
+Q. fixed로 고정된 요소를 사용자가 드래그해서 위치를 바꾸게 하려면?
+A. CSS fixed로 화면 고정 + JavaScript 드래그 이벤트 조합으로 구현.
+   mousedown 시 클릭 오프셋 계산 → mousemove마다 left/top 업데이트.
+   이때 기존 right/bottom은 auto로 리셋해야 충돌 없이 동작함.
+
+   btn.addEventListener('mousedown', (e) => {
+       let shiftX = e.clientX - btn.getBoundingClientRect().left;
+       let shiftY = e.clientY - btn.getBoundingClientRect().top;
+
+       document.addEventListener('mousemove', onMouseMove);
+       document.addEventListener('mouseup', () => {
+           document.removeEventListener('mousemove', onMouseMove);
+       }, { once: true });
+
+       function onMouseMove(e) {
+           btn.style.left   = e.clientX - shiftX + 'px';
+           btn.style.top    = e.clientY - shiftY + 'px';
+           btn.style.right  = 'auto';
+           btn.style.bottom = 'auto';
+       }
+   });
+
+   right/bottom을 auto로 리셋하는 이유:
+   CSS에서 right: 16px 이 이미 설정돼 있으면
+   left를 바꿔도 right가 우선 적용돼 위치가 안 바뀜.
+   auto로 무력화해야 left/top이 제대로 먹힘.
+
+================================================================

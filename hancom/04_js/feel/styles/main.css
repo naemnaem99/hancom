@@ -1,0 +1,248 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    background: #fff;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+body.top-layout {
+    justify-content: flex-start;
+    padding-top: 48px;
+}
+
+.prompt {
+    z-index: 1;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.arrow-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border: 2px solid #000;
+    background: #fff;
+    vertical-align: middle;
+    overflow: hidden;
+}
+
+.arrow-pixel {
+    position: relative;
+    left: -7px;
+    top: -7px;
+}
+
+.controls {
+    z-index: 1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+#question {
+    padding: 10px 14px;
+    font-size: 16px;
+    border: 2px solid #000;
+    background: #fff;
+    color: #000;
+    outline: none;
+    width: 250px;
+}
+
+#btn {
+    padding: 10px 18px;
+    font-size: 16px;
+    background: #000;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+#btn:hover {
+    background: black
+    
+    
+}
+
+.cards {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+}
+
+.cards > * {
+    pointer-events: auto;
+}
+
+.card {
+    position: relative;
+    width: 220px;
+    height: 100px;
+    opacity: 0;
+    transform: translateY(-90px) scale(0.5);
+    animation: cardIn 0.6s ease forwards;
+    cursor: grab;
+    touch-action: none;
+}
+
+@media (max-width: 600px) {
+    .card {
+        width: 73.3px;
+        height: 33.3px;
+    }
+
+    .catch-list {
+        gap: 2px;
+    }
+
+    .caught-word {
+        font-size: 6px;
+        padding: 1px 3px;
+    }
+}
+
+.card.placed {
+    position: fixed;
+    margin: 0;
+}
+
+.card.dragging {
+    cursor: grabbing;
+    z-index: 5;
+}
+
+.basket-hint {
+    z-index: 1;
+    text-align: center;
+    font-size: 15px bold;
+    font-weight: 400;
+    color: black;
+    margin-top: 8px;
+}
+
+.fire {
+    position: fixed;
+    bottom: 56px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    display: none;
+    width: 80px;
+    height: 80px;
+    background-image: url("../fire.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.fire-hint {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    text-align: center;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.card-front {
+    position: absolute;
+    inset: 0;
+    border: 3px solid #000;
+    background: #fff;
+}
+
+.card-front::before {
+    content: "";
+    position: absolute;
+    top: -3px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 33.333%;
+    height: 3px;
+    background: #fff;
+}
+
+.card-front.inverted {
+    background: #000;
+    border-color: #fff;
+}
+
+.card-front.inverted::before {
+    background: #000;
+}
+
+.catch-list {
+    position: absolute;
+    inset: 8% 10% 6% 10%;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-end;
+    gap: 4px;
+    overflow: hidden;
+}
+
+.caught-word {
+    font-size: 13px;
+    line-height: 1.4;
+    padding: 2px 6px;
+    background: #000;
+    color: #fff;
+}
+
+.card-front.inverted .caught-word {
+    background: #fff;
+    color: #000;
+}
+
+@keyframes cardIn {
+    from {
+        opacity: 0;
+        transform: translateY(-90px) scale(0.5);
+    }
+    50% {
+        opacity: 1;
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.snow-text {
+
+    position: fixed;
+    top: -40px;
+    z-index: 0;
+    font-size: 18px;
+    color: black;
+    opacity: 70%;
+    pointer-events: none;
+    white-space: nowrap;
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    from { transform: translateY(0); }
+    to { transform: translateY(110vh); }
+}

@@ -1,0 +1,12 @@
+#out {
+    color: blueviolet;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+button {
+    padding: 10px 12px;
+    font-weight: 500;
+    margin-right: 12px;
+}

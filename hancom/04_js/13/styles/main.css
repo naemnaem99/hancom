@@ -1,0 +1,14 @@
+input{
+    padding: 8px 12px;
+}
+button{
+    padding: 6px 10px
+}
+#out {
+    font-size: 20px;
+    font-weight: 600;
+    color: tomato;
+}
+#info {
+    color: olive;
+}

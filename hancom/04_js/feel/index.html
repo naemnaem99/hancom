@@ -1,0 +1,42 @@
+<!--
+  [feel — 기획서 요약] (전체 내용: 기획서.md / 기획서.pdf)
+
+  프로젝트: feel (기분 쏘기)
+  한 줄 소개: 감정을 입력해 흩날려 보내고, 바구니에 골라 담았다가 불에 태워 비우는 감정 배출 웹앱
+  목표: 감정을 참지 말고 "말로 꺼내는" 행위 자체에 의미를 둔다. 배출 → 선택 → 소각 3단계로 체험 유도.
+
+  핵심 기능 3개
+  1. 감정 쏘기 — input + 버튼(ENTER→외치기→토해내기), 클릭마다 안내 문구가 단계적으로 바뀌며
+     텍스트가 눈처럼 흩날려 떨어짐
+  2. 바구니로 선택적 담기 — 3단계 완료 후 중앙에 등장하는 픽셀아트 바구니를 드래그해서
+     원하는 낙하 텍스트만 입구(상단 중앙 1/3)로 골라 담음
+  3. 불태워 비우기 — 바구니를 불 위로 끌고 가면 소각되고 새 바구니가 다시 등장, 반복 가능
+
+  화면 구성
+  - 최상단: 안내 문구 (⬇️ 아이콘)
+  - 그 아래: 입력창 + 버튼
+  - 화면 전역: 낙하 텍스트 애니메이션
+  - 화면 중앙(3단계 이후): 바구니 + 안내 문구
+  - 화면 하단(바구니 조작 후): 불꽃 + "태워버리기" 안내 (⬆️ 아이콘)
+-->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles/main.css">
+  <title>기분이 어때</title>
+</head>
+<body>
+  <div id="prompt" class="prompt"></div>
+  <div id="controls" class="controls">
+    <input id="question" type="text" placeholder="기분이 어때요?">
+    <button id="btn">ENTER</button>
+  </div>
+  <div id="cards" class="cards"></div>
+  <div id="basketHint" class="basket-hint"></div>
+  <div id="fire" class="fire"></div>
+  <div id="fireHint" class="fire-hint"></div>
+  <script src="scripts/main.js"></script>
+</body>
+</html>

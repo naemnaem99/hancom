@@ -1,0 +1,11 @@
+#pic{
+    border-radius: 4px;
+    cursor: pointer;
+    
+}
+
+#hint {
+    font-size: 15px;
+    font-weight: 500;
+    margin-top: 12px;
+}

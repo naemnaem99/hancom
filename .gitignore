@@ -1,6 +1,4 @@
 *.mp4
-*.md
 .claude/
 node_modules/
 package-lock.json
-hancom/TIL_blog/

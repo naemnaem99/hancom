@@ -1,0 +1,13 @@
+h1 {
+    font-size: 22px;
+    font-weight: 700;
+} 
+
+button {
+    padding: 6px 12px; margin-top: 6px;
+}
+
+input {
+    padding: 10px 15px;
+}
+

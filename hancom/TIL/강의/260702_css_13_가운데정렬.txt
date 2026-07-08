@@ -1,0 +1,101 @@
+================================================================
+[CSS 13] 가운데 정렬 — text-align vs flex, absolute일 때 왜 flex가 필요한가
+작성: 2026-07-02 | 수정: 2026-07-02
+================================================================
+
+Q. text-align: center와 display: flex + align-items/justify-content는 어떻게 다른가?
+A. text-align: center는 텍스트(인라인 콘텐츠)를 가로 방향으로만 정렬함.
+   블록 요소 자체는 움직이지 않고, 안의 글자만 가운데로 감.
+
+   display: flex + justify-content: center + align-items: center는
+   flex 컨테이너 안의 자식 요소 전체를 가로+세로 동시에 정렬함.
+   텍스트뿐 아니라 div, img 등 어떤 요소든 정렬 가능.
+
+   적용 위치도 다름:
+     text-align → 요소 자신에게 적용
+     flex 정렬  → 부모에게 적용 (자식들이 정렬됨)
+
+Q. 13번(grid 카드)에서는 text-align만 썼는데, 08번(3D 카드 플립)에서는
+   왜 display: flex까지 써야 했는가?
+A. 정렬 방식의 차이가 아니라 구조 자체가 다르기 때문.
+
+   13번은 카드 하나에 내용이 하나. 텍스트만 가로 가운데면 충분하고,
+   상하 여백은 padding으로 자연스럽게 처리됨.
+
+   08번은 카드 하나에 앞면과 뒷면이 정확히 같은 자리에 겹쳐야 함.
+   일반 흐름으로 두면 앞면 아래에 뒷면이 이어서 쌓임 (겹치지 않음).
+   그래서 position: absolute + inset: 0으로 두 요소를 강제로 같은 자리에 포갬.
+
+Q. position: absolute를 쓰면 왜 flex가 따라오는가?
+A. position: absolute로 요소를 꺼내면 요소가 높이를 잃음.
+   이 상태에서 text-align은 가로만 잡고, 세로 가운데는 못 잡음.
+
+   inset: 0으로 부모 크기만큼 늘린 다음,
+   display: flex + align-items: center + justify-content: center로
+   세로까지 동시에 잡는 것.
+
+   즉, flex를 쓴 건 "더 잘 정렬하려고"가 아니라
+   absolute 구조에서 세로 정렬이 필요해서 어쩔 수 없이 따라온 것.
+
+----------------------------------------------------------------
+개념 요약
+----------------------------------------------------------------
+정렬 방법 비교:
+
+  text-align: center    글자(인라인)만 가로 정렬. 세로 못 잡음.
+  flex + justify        자식 요소 가로 정렬.
+  flex + align-items    자식 요소 세로 정렬.
+
+언제 무엇을 쓰는가:
+
+  텍스트 가로 가운데만 필요     → text-align: center
+  가로+세로 동시 가운데 필요    → display: flex + align-items + justify-content
+  position: absolute로 겹친 구조 → flex 필수 (text-align으론 세로 불가)
+
+08번 카드 플립 핵심 패턴:
+
+  .inner {
+      position: relative;
+      width: 100%; height: 100%;
+      transform-style: preserve-3d;
+  }
+
+  .front, .back {
+      position: absolute;
+      inset: 0;               /* 부모를 꽉 채움 → 두 요소 겹침 */
+      display: flex;
+      align-items: center;    /* 세로 가운데 */
+      justify-content: center; /* 가로 가운데 */
+      backface-visibility: hidden; /* 뒤로 돌아가면 안 보이게 */
+  }
+
+  .back { transform: rotateY(180deg); } /* 뒷면은 처음부터 뒤집혀 있음 */
+
+복잡해 보여도 이유는 단 하나:
+앞·뒷면을 같은 자리에 겹치기 위해 absolute를 써야 했고,
+absolute를 쓰면 세로 정렬을 위해 flex가 따라오는 것.
+
+----------------------------------------------------------------
+[수정: 2026-07-02] text-align vs flex 차이를 눈으로 확인하는 방법
+----------------------------------------------------------------
+
+Q. text-align과 flex의 차이를 코드로 직접 비교하려면 어떻게 하는가?
+A. 두 방식을 나란히 놓고, 카드에 height를 충분히 줘야 차이가 보임.
+   height가 없으면 카드가 내용 높이에 맞게 줄어들어서 차이가 안 보임.
+
+   .text-card { text-align: center; }          /* 글자가 상단에 붙음 */
+   .flex-card { display: flex;
+                align-items: center;
+                justify-content: center; }     /* 글자가 정중앙에 위치 */
+   .card { height: 120px; }                    /* 이게 없으면 차이 안 보임 */
+
+Q. CSS만으로 (JS 없이) 카드 뒤집기를 구현할 수 있는가?
+A. 가능. :hover를 쓰면 JS 없이도 뒤집기 효과를 낼 수 있음.
+   08번 실습이 바로 이 방식 — 마우스를 올리면 뒤집히고, 내리면 돌아옴.
+
+   .card:hover .inner { transform: rotateY(180deg); }
+
+   JS가 필요한 경우는 "클릭 후 고정"처럼 상태를 유지해야 할 때.
+   단순 시각 효과만 필요하면 CSS hover로 충분.
+
+================================================================
