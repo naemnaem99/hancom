@@ -1,0 +1,28 @@
+.avatar-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 24px;
+}
+
+.avatar-name {
+    margin: 0;
+    font-size: 1em;
+}
+
+.toggle-btn {
+    width: 1em;
+    height: 1em;
+    padding: 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.toggle-btn.online {
+    background: #22c55e;
+}
+
+.toggle-btn.offline {
+    background: #9ca3af;
+}

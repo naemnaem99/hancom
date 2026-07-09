@@ -1,0 +1,173 @@
+<div class="wrap">
+  <header class="page">
+    <p class="eyebrow">React 컴포넌트 조합 · 실전 데모</p>
+    <h1>작은 컴포넌트 6개가 어떻게 진짜 화면이 되는가</h1>
+    <p class="lede">
+      Card · Avatar · Badge · Greeting을 따로 만들었던 이유는 결국 이렇게 서로 안에 끼워 넣기 위해서다.
+      아래 세 데모는 실제로 클릭이 동작한다 — 오늘까지 배운 <code class="mono">useState</code> 토글과
+      <code class="mono">&amp;&amp;</code> 조건부 렌더링만으로 만들었다. 배열을 <code class="mono">map</code>으로
+      순회하는 건 아직 배우지 않아서, 컴포넌트를 하나씩 직접 나열하는 방식 그대로 옮겼다.
+    </p>
+  </header>
+
+  <section class="demo">
+    <div class="demo-head">
+      <div>
+        <h2 class="demo-title">① 팀 페이지 멤버 카드</h2>
+        <p class="demo-sub">Card 안에 Avatar + Badge를 배치 — 온라인 점을 눌러보세요</p>
+      </div>
+      <span class="demo-tag">useState 토글</span>
+    </div>
+    <div class="panel">
+      <div class="code-pane">
+        <div class="code-block">
+          <p class="code-file">App.jsx — 입력값</p>
+          <pre class="mono"><span class="k">&lt;div</span> className=<span class="s">"card"</span><span class="k">&gt;</span>
+  <span class="k">&lt;Avatar</span> name=<span class="s">"김해냄"</span> online={<span class="k">true</span>} <span class="k">/&gt;</span>
+  <span class="k">&lt;Badge</span> text=<span class="s">"팀장"</span> type=<span class="s">"new"</span> <span class="k">/&gt;</span>
+<span class="k">&lt;/div&gt;</span></pre>
+        </div>
+        <div class="code-block">
+          <p class="code-file">components/22/Avatar.jsx — 내부 로직</p>
+          <pre class="mono">const Avatar = ({name, online}) =&gt; {
+  const [isOnline, setIsOnline] = useState(online)
+  <span class="c">// online={true}가 useState의 시작값이 됨</span>
+
+  return (
+    <span class="k">&lt;button</span>
+      className={isOnline ? <span class="s">'online'</span> : <span class="s">'offline'</span>}
+      onClick={() =&gt; setIsOnline(!isOnline)}
+    <span class="k">/&gt;</span>
+  )
+}</pre>
+        </div>
+      </div>
+      <div class="live-pane">
+        <div class="team-card">
+          <div class="team-avatar-circle">김</div>
+          <div class="avatar-row">
+            <h3 class="avatar-name">김해냄</h3>
+            <button class="toggle-btn online" data-role="team-toggle" aria-label="온라인 상태 전환"></button>
+          </div>
+          <span class="badge new">팀장</span>
+          <p class="team-hint" data-role="team-hint">온라인 · 사각형을 클릭해보세요</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="demo">
+    <div class="demo-head">
+      <div>
+        <h2 class="demo-title">② 채팅 앱 사이드바</h2>
+        <p class="demo-sub">Greeting + Avatar 두 개를 각각 직접 나열 — 대화를 클릭하면 읽음 처리</p>
+      </div>
+      <span class="demo-tag">useState + && 조건부 렌더링</span>
+    </div>
+    <div class="panel">
+      <div class="code-pane">
+        <div class="code-block">
+          <p class="code-file">App.jsx — 입력값(초기 unread 개수)</p>
+          <pre class="mono">const [unread1, setUnread1] = useState(<span class="v">3</span>)  <span class="c">// 김냄냄</span>
+const [unread2, setUnread2] = useState(<span class="v">1</span>)  <span class="c">// 박모카</span></pre>
+        </div>
+        <div class="code-block">
+          <p class="code-file">App.jsx — 화면(친구마다 직접 나열, map 아직 안 배움)</p>
+          <pre class="mono"><span class="k">&lt;Greeting</span> name=<span class="s">"해냄"</span> <span class="k">/&gt;</span>
+
+<span class="k">&lt;div</span> onClick={() =&gt; setUnread1(<span class="v">0</span>)}<span class="k">&gt;</span>
+  <span class="k">&lt;Avatar</span> name=<span class="s">"김냄냄"</span> online={<span class="k">true</span>} <span class="k">/&gt;</span>
+  {unread1 &gt; <span class="v">0</span> &amp;&amp; <span class="k">&lt;span&gt;</span>{unread1}<span class="k">&lt;/span&gt;</span>}
+<span class="k">&lt;/div&gt;</span>
+
+<span class="k">&lt;div</span> onClick={() =&gt; setUnread2(<span class="v">0</span>)}<span class="k">&gt;</span>
+  <span class="k">&lt;Avatar</span> name=<span class="s">"박모카"</span> online={<span class="k">false</span>} <span class="k">/&gt;</span>
+  {unread2 &gt; <span class="v">0</span> &amp;&amp; <span class="k">&lt;span&gt;</span>{unread2}<span class="k">&lt;/span&gt;</span>}
+<span class="k">&lt;/div&gt;</span></pre>
+        </div>
+      </div>
+      <div class="live-pane">
+        <div class="chat-shell">
+          <div class="chat-greeting">안녕, 해냄 👋</div>
+          <div class="chat-item" data-role="chat-1">
+            <div class="avatar-row">
+              <h3 class="avatar-name">김냄냄</h3>
+              <span class="toggle-btn online"></span>
+            </div>
+            <span class="chat-unread" data-role="chat-1-badge">3</span>
+          </div>
+          <div class="chat-item" data-role="chat-2">
+            <div class="avatar-row">
+              <h3 class="avatar-name">박모카</h3>
+              <span class="toggle-btn"></span>
+            </div>
+            <span class="chat-unread" data-role="chat-2-badge">1</span>
+          </div>
+        </div>
+        <p class="live-note">항목을 클릭 → <b>unread &gt; 0 &amp;&amp; ...</b>가 false가 되어 뱃지가 사라짐</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="demo">
+    <div class="demo-head">
+      <div>
+        <h2 class="demo-title">③ 상품 카드 그리드</h2>
+        <p class="demo-sub">Card 3개를 직접 나열, 각 Badge는 클릭할 때마다 삼항 연산자로 색이 바뀜</p>
+      </div>
+      <span class="demo-tag">useState + 삼항 연산자</span>
+    </div>
+    <div class="panel">
+      <div class="code-pane">
+        <div class="code-block">
+          <p class="code-file">App.jsx — 입력값(카드별 초기 type)</p>
+          <pre class="mono">const [type1, setType1] = useState(<span class="v">'sale'</span>)  <span class="c">// 헤드폰</span>
+const [type2, setType2] = useState(<span class="v">'new'</span>)   <span class="c">// 키보드</span>
+const [type3, setType3] = useState(<span class="v">'sale'</span>)  <span class="c">// 백팩</span></pre>
+        </div>
+        <div class="code-block">
+          <p class="code-file">App.jsx — 화면(카드별로 직접 나열)</p>
+          <pre class="mono"><span class="k">&lt;div</span> onClick={() =&gt; setType1(type1===<span class="s">'new'</span>?<span class="s">'sale'</span>:<span class="s">'new'</span>)}<span class="k">&gt;</span>
+  <span class="k">&lt;Badge</span> text={type1===<span class="s">'new'</span>?<span class="s">'NEW'</span>:<span class="s">'SALE'</span>} type={type1} <span class="k">/&gt;</span>
+  <span class="k">&lt;Card</span> emoji=<span class="s">"🎧"</span> title=<span class="s">"헤드폰"</span> desc=<span class="s">"노이즈캔슬링"</span> <span class="k">/&gt;</span>
+<span class="k">&lt;/div&gt;</span>
+<span class="c">// type2, type3 카드도 동일하게 반복</span></pre>
+        </div>
+        <div class="code-block">
+          <p class="code-file">components/23/Badge.jsx — 내부 로직</p>
+          <pre class="mono">const Badge = ({text, type}) =&gt; {
+  const color = type === <span class="s">"new"</span> ? <span class="s">'green'</span> : <span class="s">'crimson'</span>
+  return <span class="k">&lt;span</span> style={{backgroundColor: color}}<span class="k">&gt;</span>{text}<span class="k">&lt;/span&gt;</span>
+}</pre>
+        </div>
+      </div>
+      <div class="live-pane">
+        <div class="product-grid">
+          <div class="product-card" data-role="product-1">
+            <span class="badge sale" data-role="product-1-badge">SALE</span>
+            <span class="product-emoji">🎧</span>
+            <p class="product-title">헤드폰</p>
+            <p class="product-desc">노이즈캔슬링</p>
+          </div>
+          <div class="product-card" data-role="product-2">
+            <span class="badge new" data-role="product-2-badge">NEW</span>
+            <span class="product-emoji">⌨️</span>
+            <p class="product-title">기계식 키보드</p>
+            <p class="product-desc">저소음 스위치</p>
+          </div>
+          <div class="product-card" data-role="product-3">
+            <span class="badge sale" data-role="product-3-badge">SALE</span>
+            <span class="product-emoji">🎒</span>
+            <p class="product-title">노트북 백팩</p>
+            <p class="product-desc">방수 원단</p>
+          </div>
+        </div>
+        <p class="live-note">카드를 클릭 → <b>type === 'new' ? ... : ...</b> 결과가 바뀌어 색이 전환됨</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="page">
+    hancom/05_react/my-app · components 20–23 조합 데모 · 9일차
+  </footer>
+</div>
