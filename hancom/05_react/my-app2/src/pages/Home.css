@@ -1,0 +1,223 @@
+.home-stage {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+.diorama {
+    position: relative;
+    margin: 0 auto;
+    max-width: 900px;
+    background:
+        radial-gradient(ellipse 70% 60% at 50% 35%, transparent 0%, rgba(0, 0, 0, 0.06) 100%),
+        #fff;
+    border: 3px solid #000;
+    padding: 64px 48px 0;
+    color: #000;
+    text-align: center;
+    overflow: hidden;
+}
+
+.diorama__eyebrow {
+    margin: 0 0 12px;
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #000;
+}
+
+.diorama__title {
+    display: inline-block;
+    margin: 0 0 14px;
+    padding: 6px 18px;
+    background: #000;
+    font-family: var(--sans);
+    font-size: clamp(30px, 4.5vw, 42px);
+    font-weight: 800;
+    color: #fff;
+    text-wrap: balance;
+}
+
+.diorama__sub {
+    margin: 0 0 48px;
+    font-family: var(--sans);
+    font-size: 17px;
+    color: #000;
+}
+
+.shelf {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 70px;
+    padding-top: 48px;
+}
+
+.bottle {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px 10px 0;
+    text-decoration: none;
+    transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.bottle:hover,
+.bottle:focus-visible,
+.bottle.is-active {
+    transform: translateY(-8px);
+}
+
+.bottle.is-faded {
+    opacity: 0.3;
+}
+
+.bottle:focus-visible {
+    outline: 2px solid #000;
+    outline-offset: 6px;
+}
+
+.bottle__hint {
+    position: absolute;
+    top: -44px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 28px;
+    line-height: 1;
+    font-weight: 700;
+    color: #000;
+    animation: hint-bounce 1s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes hint-bounce {
+    0%, 100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    50% {
+        transform: translateX(-50%) translateY(10px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .bottle__hint {
+        animation: none;
+    }
+}
+
+.bottle__glass {
+    position: relative;
+    display: block;
+    width: 84px;
+    height: 196px;
+}
+
+.bottle--gin .bottle__glass {
+    height: 220px;
+}
+
+.bottle--rum .bottle__glass {
+    height: 172px;
+}
+
+.bottle__svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+.bottle__shape {
+    fill: #fff;
+    stroke: #000;
+    stroke-width: 3;
+    vector-effect: non-scaling-stroke;
+    transition: fill 0.15s ease;
+}
+
+.bottle:hover .bottle__shape,
+.bottle:focus-visible .bottle__shape,
+.bottle.is-active .bottle__shape {
+    fill: #000;
+}
+
+.bottle__cap {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 15px;
+    background: #000;
+}
+
+.bottle__label {
+    position: absolute;
+    left: 15%;
+    right: 15%;
+    bottom: 26%;
+    box-sizing: border-box;
+    background: #000;
+    color: #fff;
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    padding: 4px 0;
+    text-align: center;
+}
+
+/* 병마다 몸통 폭(폴리곤 좌우 좌표)이 달라서 라벨도 그 폭에 맞춰 따로 지정 */
+.bottle--gin .bottle__label {
+    left: 26%;
+    right: 26%;
+}
+
+.bottle--rum .bottle__label {
+    left: 10%;
+    right: 10%;
+}
+
+.bottle:hover .bottle__label,
+.bottle:focus-visible .bottle__label,
+.bottle.is-active .bottle__label {
+    background: #fff;
+    color: #000;
+}
+
+.shelf__plank {
+    position: absolute;
+    left: -48px;
+    right: -48px;
+    bottom: -1px;
+    height: 10px;
+    background: #000;
+}
+
+@media (max-width: 640px) {
+    .shelf {
+        gap: 36px;
+    }
+    .bottle__glass {
+        width: 64px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .bottle,
+    .bottle__glass {
+        transition: none;
+    }
+    .bottle:hover,
+    .bottle:focus-visible,
+    .bottle.is-active {
+        transform: none;
+    }
+}

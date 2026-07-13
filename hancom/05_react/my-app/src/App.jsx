@@ -1,10 +1,24 @@
 import "./App.css"
-import Weather from "./components/39/Weather"
+import {BrowserRouter, Routes, Route, Link} from 'react-router-dom'
+import Home from "./pages/Home"
+import About from "./pages/About"
 
 function App() {
 
   return (
-    <Weather/>
+    <BrowserRouter>
+    <nav>
+      <Link to= "/">Home</Link>
+      {' ㅣ '}
+      <Link to="/about"> About</Link>
+    </nav>
+
+    <Routes>
+      <Route path="/" element={<Home/>}/>
+      <Route path="/about" element={<About/>}/>
+
+    </Routes>
+    </BrowserRouter>
   )
 }
 

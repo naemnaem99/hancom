@@ -1,0 +1,57 @@
+.spirit-loader {
+    position: fixed;
+    inset: 0;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    z-index: 20;
+}
+
+.spirit-loader__icon {
+    display: block;
+    animation: spirit-bob 1.4s ease-in-out infinite;
+}
+
+@keyframes spirit-bob {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-14px);
+    }
+}
+
+.spirit-loader__text {
+    font-family: var(--sans);
+    font-size: 18px;
+    font-weight: 700;
+    color: #000;
+}
+
+.spirit-loader__dots span {
+    opacity: 0;
+    animation: spirit-dot-fade 1.2s infinite;
+}
+
+.spirit-loader__dots span:nth-child(1) { animation-delay: 0s; }
+.spirit-loader__dots span:nth-child(2) { animation-delay: 0.2s; }
+.spirit-loader__dots span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes spirit-dot-fade {
+    0%, 20% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .spirit-loader__icon,
+    .spirit-loader__dots span {
+        animation: none;
+    }
+    .spirit-loader__dots span {
+        opacity: 1;
+    }
+}
