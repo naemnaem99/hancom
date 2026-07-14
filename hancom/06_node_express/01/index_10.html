@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>수강생 명단</title>
+<style>
+  #grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr) 30px repeat(3, 1fr);
+    grid-auto-rows: 1fr;
+    gap: 10px;
+    max-width: 700px;
+    margin: 20px auto;
+  }
+  .student {
+    position: relative;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+    cursor: pointer;
+  }
+  .student:hover {
+    background: #f0f0f0;
+  }
+  .vacant {
+    border: 1px dashed #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+    color: #999;
+    cursor: pointer;
+  }
+  .vacant:hover {
+    background: #f0f0f0;
+  }
+  .delete-btn {
+    position: absolute;
+    top: 2px;
+    right: 6px;
+    color: #c00;
+    font-size: 12px;
+  }
+  .room-bar {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 8px;
+    text-align: center;
+    background: #333;
+    color: #fff;
+    border-radius: 8px;
+    letter-spacing: 4px;
+  }
+</style>
+</head>
+<body>
+
+<div class="room-bar">앞 (TV)</div>
+<div id="grid"></div>
+<div class="room-bar">뒤</div>
+
+<script src="index_10.js"></script>
+
+</body>
+</html>
