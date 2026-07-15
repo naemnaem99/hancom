@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>sparta.calc — 팀스파르타</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+  <style>
+    /* ── Design Tokens (TeamSparta_design.md OKLCH 원본값) ─────── */
+    :root {
+      --brand-red:             oklch(0.613 0.214 19);
+      --brand-red-dark:        oklch(0.525 0.197 21);
+      --brand-red-soft:        oklch(0.944 0.029 7);
+      --interaction-blue:      oklch(0.429 0.297 264);
+      --interaction-blue-soft: oklch(0.958 0.020 280);
+      --teal-strong:           oklch(0.378 0.066 224);
+      --badge-teal-bg:         oklch(0.941 0.021 208);
+
+      --white:    oklch(1.000 0.000 0);
+      --gray-50:  oklch(0.979 0.003 265);
+      --gray-100: oklch(0.954 0.005 258);
+      --gray-200: oklch(0.910 0.007 269);
+      --gray-300: oklch(0.829 0.009 265);
+      --gray-400: oklch(0.729 0.013 271);
+      --gray-500: oklch(0.569 0.011 267);
+      --gray-600: oklch(0.420 0.012 267);
+      --gray-700: oklch(0.298 0.011 271);
+      --gray-800: oklch(0.210 0.008 275);
+      --gray-900: oklch(0.164 0.011 268);
+
+      --focus-ring: oklch(0.429 0.297 264 / 0.32);
+      --shadow-sm:  0 1px 2px oklch(0.164 0.011 268 / 0.06),
+                    0 1px 1px oklch(0.164 0.011 268 / 0.04);
+
+      --radius-xs: 6px;
+      --radius-sm: 16px;
+      --radius-md: 50px;
+
+      --space-3: 8px;
+      --space-4: 10px;
+      --space-5: 12px;
+      --space-6: 15px;
+      --space-7: 32px;
+
+      --font-sans: "Pretendard Variable", Pretendard, -apple-system,
+                   BlinkMacSystemFont, system-ui, "Malgun Gothic",
+                   "Apple SD Gothic Neo", sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--gray-50);
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Topbar ───────────────────────────────────────────────── */
+    .topbar {
+      height: 56px;
+      background: var(--white);
+      border-bottom: 1px solid var(--gray-100);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 var(--space-7);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--gray-900);
+      letter-spacing: -0.01em;
+    }
+
+    .brand-icon {
+      width: 28px;
+      height: 28px;
+      background: var(--brand-red);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-size: 13px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .topbar-badge {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--teal-strong);
+      background: var(--badge-teal-bg);
+      padding: 3px 10px;
+      border-radius: var(--radius-md);
+      letter-spacing: 0.08em;
+    }
+
+    /* ── Main ─────────────────────────────────────────────────── */
+    .main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-7) var(--space-6);
+    }
+
+    /* ── Calculator Card ──────────────────────────────────────── */
+    .calc-card {
+      background: var(--white);
+      border: 1px solid var(--gray-100);
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-sm);
+      width: 100%;
+      max-width: 380px;
+      padding: var(--space-6);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-5);
+    }
+
+    /* ── Display ──────────────────────────────────────────────── */
+    .display {
+      background: var(--gray-50);
+      border: 1px solid var(--gray-100);
+      border-radius: var(--radius-xs);
+      padding: var(--space-5) var(--space-6);
+      min-height: 104px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: flex-end;
+      gap: 4px;
+      overflow: hidden;
+      transition: background-color 0.4s ease;
+    }
+
+    .display.flash {
+      background-color: var(--brand-red-soft);
+    }
+
+    .expression {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--gray-400);
+      min-height: 18px;
+      text-align: right;
+      width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .result-wrapper { overflow: hidden; width: 100%; }
+
+    .result {
+      font-size: 44px;
+      font-weight: 700;
+      color: var(--gray-900);
+      font-variant-numeric: tabular-nums;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      text-align: right;
+      word-break: break-all;
+    }
+
+    .result.slide-in {
+      animation: slideIn 0.18s ease-out;
+    }
+
+    @keyframes slideIn {
+      from { transform: translateY(10px); opacity: 0.4; }
+      to   { transform: translateY(0);    opacity: 1;   }
+    }
+
+    /* ── Button Grid ──────────────────────────────────────────── */
+    .btn-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-4);
+    }
+
+    .btn {
+      height: 64px;
+      border: none;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-sans);
+      font-size: 18px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.1s ease, filter 0.1s ease;
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+
+    .btn:focus-visible {
+      box-shadow: 0 0 0 3px var(--focus-ring);
+    }
+
+    .btn:active { transform: scale(0.96); }
+
+    /* 숫자 버튼 */
+    .btn-num {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      color: var(--gray-900);
+    }
+    .btn-num:hover { background: var(--gray-50); }
+
+    /* 특수 버튼 (AC ± %) */
+    .btn-special {
+      background: var(--gray-100);
+      color: var(--gray-500);
+      font-weight: 700;
+      font-size: 15px;
+    }
+    .btn-special:hover { background: var(--gray-200); }
+
+    /* 연산자 버튼 (÷ × − +) */
+    .btn-op {
+      background: var(--badge-teal-bg);
+      color: var(--teal-strong);
+      font-weight: 700;
+      font-size: 20px;
+    }
+    .btn-op:hover { filter: brightness(0.95); }
+    .btn-op.active {
+      background: var(--teal-strong);
+      color: var(--white);
+    }
+
+    /* 등호 버튼 */
+    .btn-eq {
+      background: var(--brand-red);
+      color: var(--white);
+      border-radius: var(--radius-md);
+      font-weight: 700;
+      font-size: 22px;
+    }
+    .btn-eq:hover { background: var(--brand-red-dark); }
+    .btn-eq:active { transform: scale(0.96); }
+
+    .btn-eq.pulse {
+      animation: eqPulse 0.2s ease-out;
+    }
+    @keyframes eqPulse {
+      0%   { transform: scale(1); }
+      50%  { transform: scale(1.06); }
+      100% { transform: scale(1); }
+    }
+
+    /* 넓은 0 버튼 */
+    .btn-zero {
+      grid-column: span 2;
+      border-radius: var(--radius-md);
+      text-align: left;
+      padding-left: 24px;
+    }
+
+    /* ── 키보드 힌트 ──────────────────────────────────────────── */
+    .keyboard-hint {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--gray-400);
+      text-align: center;
+      letter-spacing: 0.01em;
+    }
+
+    /* ── prefers-reduced-motion ───────────────────────────────── */
+    @media (prefers-reduced-motion: reduce) {
+      .result.slide-in { animation: none; }
+      .btn-eq.pulse    { animation: none; }
+      .display         { transition: none; }
+      .btn             { transition: none; }
+    }
+
+    /* ── Mobile ───────────────────────────────────────────────── */
+    @media (max-width: 480px) {
+      .topbar { padding: 0 var(--space-6); }
+
+      .main {
+        align-items: flex-start;
+        padding: var(--space-5);
+        padding-top: var(--space-6);
+      }
+
+      .calc-card {
+        max-width: 100%;
+        padding: var(--space-5);
+        gap: var(--space-4);
+      }
+
+      .btn      { height: 56px; font-size: 16px; }
+      .btn-op   { font-size: 18px; }
+      .btn-eq   { font-size: 20px; }
+      .result   { font-size: 36px; }
+      .display  { min-height: 88px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-icon">S</div>
+      sparta.calc
+    </div>
+    <span class="topbar-badge">계산기</span>
+  </header>
+
+  <main class="main">
+    <div class="calc-card">
+
+      <div class="display" id="display">
+        <div class="expression" id="expression" aria-live="polite"></div>
+        <div class="result-wrapper">
+          <div class="result" id="result" role="status" aria-live="assertive" aria-atomic="true">0</div>
+        </div>
+      </div>
+
+      <div class="btn-grid" role="group" aria-label="계산기 버튼">
+        <button class="btn btn-special" data-action="clear"   aria-label="전체 초기화">AC</button>
+        <button class="btn btn-special" data-action="sign"    aria-label="부호 변경">±</button>
+        <button class="btn btn-special" data-action="percent" aria-label="퍼센트">%</button>
+        <button class="btn btn-op"      data-action="op"      data-op="÷" aria-label="나누기">÷</button>
+
+        <button class="btn btn-num" data-action="num" data-num="7">7</button>
+        <button class="btn btn-num" data-action="num" data-num="8">8</button>
+        <button class="btn btn-num" data-action="num" data-num="9">9</button>
+        <button class="btn btn-op"  data-action="op"  data-op="×" aria-label="곱하기">×</button>
+
+        <button class="btn btn-num" data-action="num" data-num="4">4</button>
+        <button class="btn btn-num" data-action="num" data-num="5">5</button>
+        <button class="btn btn-num" data-action="num" data-num="6">6</button>
+        <button class="btn btn-op"  data-action="op"  data-op="−" aria-label="빼기">−</button>
+
+        <button class="btn btn-num" data-action="num" data-num="1">1</button>
+        <button class="btn btn-num" data-action="num" data-num="2">2</button>
+        <button class="btn btn-num" data-action="num" data-num="3">3</button>
+        <button class="btn btn-op"  data-action="op"  data-op="+" aria-label="더하기">+</button>
+
+        <button class="btn btn-num btn-zero" data-action="num" data-num="0">0</button>
+        <button class="btn btn-num"          data-action="decimal" aria-label="소수점">.</button>
+        <button class="btn btn-eq"           data-action="equals"  aria-label="계산 실행">=</button>
+      </div>
+
+      <p class="keyboard-hint">키보드로도 입력할 수 있어요</p>
+
+    </div>
+  </main>
+
+  <script>
+    const resultEl    = document.getElementById('result');
+    const expressionEl = document.getElementById('expression');
+    const displayEl   = document.getElementById('display');
+    const eqBtn       = document.querySelector('[data-action="equals"]');
+
+    let current     = '0';
+    let previous    = null;
+    let operator    = null;
+    let shouldReset = false;
+    let expressionStr = '';
+
+    function fmt(val) {
+      const n = parseFloat(val);
+      if (isNaN(n)) return val;
+      const s = String(n);
+      if (Math.abs(n) >= 1e13 || (Math.abs(n) < 1e-6 && n !== 0)) {
+        return n.toExponential(4);
+      }
+      if (s.length > 12) return parseFloat(n.toPrecision(10)).toString();
+      return s;
+    }
+
+    function updateDisplay(animate) {
+      if (animate) {
+        resultEl.classList.remove('slide-in');
+        void resultEl.offsetWidth;
+        resultEl.classList.add('slide-in');
+      }
+      resultEl.textContent    = fmt(current);
+      expressionEl.textContent = expressionStr;
+    }
+
+    function compute(a, op, b) {
+      const na = parseFloat(a), nb = parseFloat(b);
+      if (op === '÷') return nb === 0 ? '오류' : String(na / nb);
+      if (op === '×') return String(na * nb);
+      if (op === '−') return String(na - nb);
+      if (op === '+') return String(na + nb);
+      return b;
+    }
+
+    function clearActive() {
+      document.querySelectorAll('.btn-op').forEach(b => b.classList.remove('active'));
+    }
+
+    function handleOperator(op) {
+      if (current === '오류') return;
+      if (operator && !shouldReset) {
+        current = compute(previous, operator, current);
+        updateDisplay();
+      }
+      previous    = current;
+      operator    = op;
+      shouldReset = true;
+      expressionStr = fmt(previous) + ' ' + op;
+      updateDisplay();
+
+      clearActive();
+      document.querySelectorAll('.btn-op').forEach(b => {
+        if (b.dataset.op === op) b.classList.add('active');
+      });
+    }
+
+    function handleEquals() {
+      if (operator === null || previous === null) return;
+      expressionStr = fmt(previous) + ' ' + operator + ' ' + fmt(current) + ' =';
+      current     = compute(previous, operator, current);
+      operator    = null;
+      previous    = null;
+      shouldReset = true;
+      clearActive();
+
+      updateDisplay(true);
+
+      displayEl.classList.remove('flash');
+      void displayEl.offsetWidth;
+      displayEl.classList.add('flash');
+      setTimeout(() => displayEl.classList.remove('flash'), 400);
+
+      eqBtn.classList.remove('pulse');
+      void eqBtn.offsetWidth;
+      eqBtn.classList.add('pulse');
+      setTimeout(() => eqBtn.classList.remove('pulse'), 200);
+
+      if (current === '오류') expressionStr = '0으로 나눌 수 없어요';
+    }
+
+    function handleNum(num) {
+      if (current === '오류') handleClear();
+      if (shouldReset) {
+        current     = num;
+        shouldReset = false;
+      } else {
+        current = (current === '0' && num !== '.') ? num
+                : current.length >= 12             ? current
+                : current + num;
+      }
+      updateDisplay();
+    }
+
+    function handleDecimal() {
+      if (shouldReset) { current = '0.'; shouldReset = false; updateDisplay(); return; }
+      if (!current.includes('.')) { current += '.'; updateDisplay(); }
+    }
+
+    function handleClear() {
+      current = '0'; previous = null; operator = null;
+      shouldReset = false; expressionStr = '';
+      clearActive(); updateDisplay();
+    }
+
+    function handleSign() {
+      if (current === '0' || current === '오류') return;
+      current = String(parseFloat(current) * -1);
+      updateDisplay();
+    }
+
+    function handlePercent() {
+      if (current === '오류') return;
+      current = String(parseFloat(current) / 100);
+      updateDisplay();
+    }
+
+    function handleBackspace() {
+      if (shouldReset || current === '오류') { handleClear(); return; }
+      current = current.length > 1 ? current.slice(0, -1) : '0';
+      updateDisplay();
+    }
+
+    /* ── Button clicks ────────────────────────────────────────── */
+    document.querySelector('.btn-grid').addEventListener('click', e => {
+      const btn = e.target.closest('.btn');
+      if (!btn) return;
+      const { action, op, num } = btn.dataset;
+      if (action === 'num')     handleNum(num);
+      if (action === 'decimal') handleDecimal();
+      if (action === 'op')      handleOperator(op);
+      if (action === 'equals')  handleEquals();
+      if (action === 'clear')   handleClear();
+      if (action === 'sign')    handleSign();
+      if (action === 'percent') handlePercent();
+    });
+
+    /* ── Keyboard ─────────────────────────────────────────────── */
+    document.addEventListener('keydown', e => {
+      if (e.metaKey || e.ctrlKey || e.altKey) return;
+      const k = e.key;
+      if ('0123456789'.includes(k))          handleNum(k);
+      else if (k === '.')                    handleDecimal();
+      else if (k === '+')                    handleOperator('+');
+      else if (k === '-')                    handleOperator('−');
+      else if (k === '*')                    handleOperator('×');
+      else if (k === '/') { e.preventDefault(); handleOperator('÷'); }
+      else if (k === 'Enter' || k === '=')   handleEquals();
+      else if (k === 'Escape')               handleClear();
+      else if (k === 'Backspace')            handleBackspace();
+    });
+
+    updateDisplay();
+  </script>
+
+</body>
+</html>

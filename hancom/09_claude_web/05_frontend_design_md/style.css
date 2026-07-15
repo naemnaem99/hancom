@@ -1,0 +1,199 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&display=swap');
+
+/* Design Tokens — CLAUDE_DESIGN.md */
+:root {
+  --canvas:                #faf9f5;
+  --surface-card:          #efe9de;
+  --surface-cream-strong:  #e8e0d2;
+  --surface-dark:          #181715;
+  --surface-dark-elevated: #252320;
+  --surface-dark-soft:     #1f1e1b;
+
+  --ink:          #141413;
+  --body-strong:  #252523;
+  --body:         #3d3d3a;
+  --muted:        #6c6a64;
+  --on-primary:   #ffffff;
+  --on-dark:      #faf9f5;
+  --on-dark-soft: #a09d96;
+
+  --primary:        #cc785c;
+  --primary-active: #a9583e;
+  --hairline:       #e6dfd8;
+
+  --rounded-md: 8px;
+  --rounded-lg: 12px;
+
+  --spacing-xs: 8px;
+  --spacing-sm: 12px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+
+  --font-display: 'Cormorant Garamond', 'EB Garamond', Garamond, 'Times New Roman', serif;
+  --font-body:    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono:    'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
+}
+
+/* Reset */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  min-height: 100vh;
+  font-family: var(--font-body);
+  background: var(--canvas);
+  color: var(--ink);
+  display: grid;
+  place-items: center;
+  padding: var(--spacing-xl);
+}
+
+/* Calculator Card */
+.calc-card {
+  width: min(360px, 100%);
+  background: var(--surface-card);
+  border: 1px solid var(--hairline);
+  border-radius: var(--rounded-lg);
+  box-shadow: 0 1px 3px rgba(20, 20, 19, 0.08);
+  padding: var(--spacing-lg);
+}
+
+/* Label */
+.calc-label {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--muted);
+  margin-bottom: var(--spacing-sm);
+}
+
+/* Display */
+.calc-display {
+  background: var(--surface-dark);
+  border-radius: var(--rounded-md);
+  padding: 20px 20px 24px;
+  margin-bottom: var(--spacing-md);
+}
+
+.calc-history {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--on-dark-soft);
+  text-align: right;
+  min-height: 20px;
+  margin-bottom: 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.calc-result {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 2.8rem;
+  font-weight: 400;
+  color: var(--on-dark);
+  text-align: right;
+  line-height: 1.1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition: font-size 0.05s ease;
+}
+
+/* Key Grid */
+.calc-keys {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-xs);
+}
+
+/* Base key */
+.key {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 500;
+  height: 64px;
+  border-radius: var(--rounded-md);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Number keys */
+.key-num {
+  background: var(--canvas);
+  color: var(--ink);
+  border: 1px solid var(--hairline);
+  font-size: 1.1rem;
+}
+.key-num:active {
+  background: var(--surface-cream-strong);
+}
+
+/* Utility keys (AC ± %) */
+.key-util {
+  background: var(--surface-cream-strong);
+  color: var(--body-strong);
+}
+.key-util:active {
+  background: var(--hairline);
+}
+
+/* Operator keys (÷ × − +) */
+.key-op {
+  background: var(--surface-dark-elevated);
+  color: var(--on-dark);
+  font-size: 1.2rem;
+}
+.key-op:active {
+  background: var(--surface-dark-soft);
+}
+
+/* Primary (=) */
+.key-primary {
+  background: var(--primary);
+  color: var(--on-primary);
+  font-size: 1.3rem;
+}
+.key-primary:active {
+  background: var(--primary-active);
+}
+
+/* 0 spans 2 columns */
+.key-zero {
+  grid-column: span 2;
+  justify-content: flex-start;
+  padding-left: var(--spacing-lg);
+}
+
+/* Keyboard hint */
+.calc-hint {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--muted);
+  text-align: center;
+  margin-top: var(--spacing-sm);
+}
+
+/* Responsive */
+@media (max-width: 400px) {
+  .calc-card    { padding: var(--spacing-md); }
+  .calc-result  { font-size: 2.2rem; }
+  .key          { height: 56px; }
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .calc-result { transition: none; }
+}

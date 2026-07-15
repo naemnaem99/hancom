@@ -1,0 +1,38 @@
+:root {
+  /* 뉴모피즘 다크 팔레트 */
+  --bg: #23272e;
+  --surface: #23272e;
+  --shadow-dark: #191c21;
+  --shadow-light: #2d323b;
+  --text: #e8eaed;
+  --text-dim: #8a909a;
+  /* 민트/시안 그린 포인트 */
+  --accent: #2ee6c5;
+  --accent-glow: rgba(46, 230, 197, 0.45);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, 'Malgun Gothic', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}

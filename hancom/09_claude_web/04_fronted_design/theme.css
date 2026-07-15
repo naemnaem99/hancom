@@ -1,0 +1,278 @@
+/* ============================================================
+   BIT-8 — 8비트 흑백 디자인 언어 (범용 테마)
+   계산기 프로젝트에서 "언어"만 추출한 재사용 CSS.
+   목적에 종속된 부품(keypad/tape/monster)은 포함하지 않음.
+
+   사용법:
+     1) <link rel="stylesheet" href="theme.css" />
+     2) <html data-theme="light">  (또는 "dark")
+     3) .panel / .btn / .input / .tag 같은 중립 클래스 사용
+   ============================================================ */
+
+/* 폰트: 한 파일 드롭인 편의를 위해 @import.
+   성능이 중요하면 이 줄을 지우고 HTML <head>에 <link>로 옮기세요. */
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Mono:wght@400;700&display=swap");
+
+/* ---------- 디자인 토큰 (단일 진실 공급원) ---------- */
+:root {
+  /* 색 — 딱 두 개. 나머지는 이 둘의 반전/투명도로만 표현 */
+  --ink: #000;
+  --paper: #fff;
+
+  /* 폰트 */
+  --font-display: "Press Start 2P", monospace; /* 제목·라벨 (작게, 절제해서) */
+  --font-body: "Space Mono", ui-monospace, monospace; /* 본문·숫자 */
+
+  /* 재질 */
+  --radius: 0; /* 각진 모서리 */
+  --bd-width: 3px;
+  --bd: var(--bd-width) solid var(--ink);
+  --bd-thin: 2px solid var(--ink);
+
+  /* 하드 오프셋 그림자 스케일 (블러 0) */
+  --shadow-sm: 3px 3px 0 var(--ink);
+  --shadow: 6px 6px 0 var(--ink);
+  --shadow-lg: 10px 10px 0 var(--ink);
+
+  /* 간격 스케일 */
+  --space-1: 6px;
+  --space-2: 10px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 36px;
+
+  /* 인터랙션 */
+  --tap: 2px; /* 누를 때 밀리는 거리 */
+  --focus: 3px solid var(--ink);
+}
+
+/* 다크 = 반전(검은 종이 / 흰 잉크). 색 규칙이 단 두 변수라 한 줄로 뒤집힘 */
+[data-theme="dark"] {
+  --ink: #fff;
+  --paper: #000;
+}
+
+/* ---------- 리셋 & 기본 ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100vh;
+  font-family: var(--font-body);
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.5;
+  transition: background 0.2s steps(2), color 0.2s steps(2);
+}
+
+/* ---------- 타이포그래피 ---------- */
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  line-height: 1.35;
+  font-weight: 400; /* 픽셀 폰트는 굵기 하나뿐 */
+}
+h1 {
+  font-size: 1.4rem;
+}
+h2 {
+  font-size: 1rem;
+}
+h3 {
+  font-size: 0.72rem;
+}
+
+/* 작은 픽셀 라벨 (섹션 머리말 등) */
+.eyebrow {
+  font-family: var(--font-display);
+  font-size: 0.6rem;
+  letter-spacing: 0.02em;
+  display: inline-block;
+}
+
+/* 색 대신 투명도로 만든 보조 텍스트 */
+.muted {
+  opacity: 0.55;
+}
+
+a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+a:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+a:focus-visible {
+  outline: var(--focus);
+  outline-offset: 2px;
+}
+
+/* ---------- 상자: .panel ---------- */
+.panel {
+  background: var(--paper);
+  color: var(--ink);
+  border: var(--bd);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  padding: var(--space-4);
+}
+.panel--flat {
+  box-shadow: none;
+}
+.panel--sm {
+  box-shadow: var(--shadow);
+  padding: var(--space-3);
+}
+
+/* ---------- 버튼: .btn ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--ink);
+  background: var(--paper);
+  border: var(--bd-thin);
+  border-radius: var(--radius);
+  padding: 0.6em 1em;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.05s ease, background 0.1s steps(2),
+    color 0.1s steps(2), box-shadow 0.05s ease;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+.btn:hover {
+  background: var(--ink); /* hover = 반전 */
+  color: var(--paper);
+}
+.btn:active {
+  transform: translate(var(--tap), var(--tap));
+  box-shadow: 1px 1px 0 var(--ink);
+}
+.btn:focus-visible {
+  outline: var(--focus);
+  outline-offset: 3px;
+}
+
+/* 반전 버튼(강조): 처음부터 잉크 바탕, hover 시 뒤집힘 */
+.btn--invert {
+  background: var(--ink);
+  color: var(--paper);
+}
+.btn--invert:hover {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+/* 그림자 없는 납작 버튼 */
+.btn--flat {
+  box-shadow: none;
+}
+.btn--flat:active {
+  box-shadow: none;
+}
+
+/* ---------- 입력: .input ---------- */
+.input,
+.textarea,
+.select {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--ink);
+  background: var(--paper);
+  border: var(--bd-thin);
+  border-radius: var(--radius);
+  padding: 0.55em 0.7em;
+  width: 100%;
+}
+.input:focus-visible,
+.textarea:focus-visible,
+.select:focus-visible {
+  outline: var(--focus);
+  outline-offset: 2px;
+}
+.input::placeholder,
+.textarea::placeholder {
+  color: var(--ink);
+  opacity: 0.4;
+}
+
+/* ---------- 태그/뱃지 ---------- */
+.tag {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 0.5rem;
+  line-height: 1;
+  border: var(--bd-thin);
+  border-radius: var(--radius);
+  padding: 6px 8px;
+}
+.tag--invert {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+/* ---------- 구분선 & 리스트 ---------- */
+.hr {
+  border: none;
+  border-top: var(--bd-thin);
+  margin: var(--space-3) 0;
+}
+.list {
+  list-style: none;
+}
+.list > li {
+  padding: 0.7em 0;
+  border-bottom: 1px dashed var(--ink);
+}
+.list > li:last-child {
+  border-bottom: none;
+}
+
+/* ---------- 레이아웃 헬퍼 ---------- */
+.container {
+  width: min(960px, 92vw);
+  margin-inline: auto;
+}
+.stack > * + * {
+  margin-top: var(--space-3);
+} /* 세로 간격 */
+.cluster {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  align-items: center;
+} /* 가로 나열 */
+.center {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: var(--space-4);
+}
+
+/* ---------- 모션 감소 ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

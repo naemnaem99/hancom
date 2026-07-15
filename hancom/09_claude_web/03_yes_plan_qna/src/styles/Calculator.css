@@ -1,0 +1,124 @@
+.calculator {
+  width: 340px;
+  max-width: 100%;
+  padding: 26px 22px;
+  border-radius: 32px;
+  background: var(--surface);
+  /* 뉴모피즘: 바깥으로 볼록한 카드 */
+  box-shadow:
+    12px 12px 24px var(--shadow-dark),
+    -12px -12px 24px var(--shadow-light);
+}
+
+/* ===== 디스플레이 (큰 숫자만) ===== */
+.display {
+  height: 110px;
+  margin-bottom: 26px;
+  padding: 0 20px;
+  border-radius: 20px;
+  background: var(--surface);
+  /* 안쪽으로 들어간(inset) 뉴모피즘 화면 */
+  box-shadow:
+    inset 6px 6px 12px var(--shadow-dark),
+    inset -6px -6px 12px var(--shadow-light);
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  font-size: 3.2rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  overflow: hidden;
+  word-break: break-all;
+}
+
+/* 긴 숫자는 자동으로 작게 */
+.display:not(.display--error) {
+  font-size: clamp(1.6rem, 12vw, 3.2rem);
+}
+
+.display--error {
+  color: #ff6b6b;
+  font-size: 2.6rem;
+}
+
+/* ===== 키패드 ===== */
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.key {
+  height: 64px;
+  border: none;
+  border-radius: 18px;
+  background: var(--surface);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+  user-select: none;
+  transition: box-shadow 0.08s ease, transform 0.08s ease, color 0.08s ease;
+
+  /* 볼록한 뉴모피즘 버튼 */
+  box-shadow:
+    5px 5px 11px var(--shadow-dark),
+    -5px -5px 11px var(--shadow-light);
+}
+
+.key:hover {
+  color: #ffffff;
+}
+
+/* 확실한 피드백: 누르면 안으로 쑥 눌리고 살짝 축소 */
+.key:active {
+  transform: scale(0.96);
+  box-shadow:
+    inset 4px 4px 9px var(--shadow-dark),
+    inset -4px -4px 9px var(--shadow-light);
+}
+
+/* 기능키 (C, ←, %, ±) */
+.key--func {
+  color: var(--text-dim);
+  font-size: 1.3rem;
+}
+
+/* 연산자 (÷ × − +) : 민트/시안 그린 포인트 */
+.key--op {
+  color: var(--accent);
+  font-size: 1.7rem;
+}
+
+.key--op:hover {
+  color: var(--accent);
+}
+
+/* = : 민트 채움 버튼, 확실한 강조 */
+.key--equals {
+  color: #10231f;
+  font-size: 1.8rem;
+  background: var(--accent);
+  box-shadow:
+    5px 5px 12px var(--shadow-dark),
+    -5px -5px 12px var(--shadow-light),
+    0 0 14px var(--accent-glow);
+}
+
+.key--equals:hover {
+  color: #10231f;
+  filter: brightness(1.06);
+}
+
+.key--equals:active {
+  transform: scale(0.96);
+  filter: brightness(0.95);
+  box-shadow:
+    inset 3px 3px 8px rgba(0, 0, 0, 0.35),
+    0 0 8px var(--accent-glow);
+}
