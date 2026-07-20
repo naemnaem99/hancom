@@ -1,4 +1,6 @@
 *.mp4
+*.pt
+hancom/13_yolo/basic/runs/
 .claude/
 node_modules/
 package-lock.json
