@@ -3,3 +3,4 @@
 @hancom/claude_folder_create.md
 @hancom/claude_til.md
 @hancom/claude_velog.md
+@hancom/claude_commit.md

@@ -5,7 +5,7 @@ import cv2
 model = YOLO("yolo11n.pt")
 print(model.names)
 model(
-    "input_params2.jpg",
+    "../input_params2.jpg",
     classes=[60, 75],
     save=True
 )
